@@ -1,4 +1,5 @@
 import pygame
+import PlayerManager
 pygame.init()
 
 #screen setup
@@ -9,6 +10,7 @@ pygame.display.set_caption("Push")
 #useful variables 
 screen_center_X = screen_width // 2
 screen_center_Y = screen_height // 2
+player_manager = PlayerManager()
 
 #logo
 logo_done = False

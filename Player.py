@@ -1,5 +1,5 @@
-import main
-import Card
+from main import *
+from Card import *
 
 class Player:
     def __init__(self,name,avatar, avatar_X, avatar_Y):

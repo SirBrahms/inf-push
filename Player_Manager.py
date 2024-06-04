@@ -1,5 +1,5 @@
-import LimList
-import main
+from LimList import *
+
 
 class PlayerManager:
     def __init__(self):

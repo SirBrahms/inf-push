@@ -1,5 +1,5 @@
 import pygame
-import PlayerManager
+from Player_Manager import PlayerManager
 pygame.init()
 
 #screen setup

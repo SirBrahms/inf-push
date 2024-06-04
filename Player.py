@@ -2,10 +2,13 @@ import main
 import Card
 
 class Player:
-    def __init__(self,name,avatar):
+    def __init__(self,name,avatar, avatar_X, avatar_Y):
         self.name=name
         self.avatar=avatar
+        self.avatar_X=avatar_X
+        self.avatar_Y=avatar_Y
         self.score=0
+        
 
         # card lists
         self.cards_green = []

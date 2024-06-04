@@ -17,6 +17,8 @@ class Player:
         self.cards_yellow = []
         self.cards_purple = []
 
+        self.secured_cards = []
+
     def get_card_and_place(self, stack_num):
         card = main.player_manager.get_card()
         main.player_manager.add_card_to_stack(card, stack_num)
@@ -37,6 +39,10 @@ class Player:
                     self.cards_yellow.append(e)
                 elif (e.colour == "purple"):
                     self.cards_purple.append(e)
+
+    def count_score(self):
+        for e in self.cards_green:
+            self.score += e.value
 
     def secure_color(self):
         pass

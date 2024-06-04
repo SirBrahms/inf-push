@@ -17,3 +17,6 @@ class PlayerManager:
     def add_card_to_stack(self, card, stack_number):
         self.stacks[stack_number].append(card)
     
+    def switch_direction(self):
+        self.direction *= -1
+    

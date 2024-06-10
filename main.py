@@ -1,4 +1,5 @@
 import pygame
+from sys import exit
 from Player_Manager import PlayerManager
 pygame.init()
 
@@ -25,11 +26,13 @@ logo_timer = pygame.time.get_ticks()
 
 running = True
 while running:
-    #quit event
+    #event handler
     for event in pygame.event.get():
+        #quit event
         if event.type == pygame.QUIT:
             running = False
-            
+            pygame.quit()
+            exit()
             
     #clear screen if logo displayed for long enough
     current_time = pygame.time.get_ticks()
@@ -43,7 +46,13 @@ while running:
     else:
         screen.blit(logo, (logo_X, logo_Y))
         pygame.display.flip()
-        
+    
+    
+    
+    
+    
+    pygame.display.update()
+    
 #quitting
 pygame.time.wait(4000)
 pygame.quit()

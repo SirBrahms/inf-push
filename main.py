@@ -35,7 +35,7 @@ while running:
             exit()
             
     
-    # display logo
+    #display logo
     if not logo_done:
         screen.blit(logo, (logo_X, logo_Y))
         pygame.display.flip()
@@ -43,8 +43,8 @@ while running:
         screen.fill((0,0,0))
         logo_done = True
     
-    
-    
+    #set player number
+        #work in progress
     
     pygame.display.update()
     

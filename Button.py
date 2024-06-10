@@ -10,6 +10,8 @@ class Button:
         self.height = None
         self.rect = None
         self.image = None
+        self.mouse_position = None
+        self.clicked = False
     
     def load_image(self):
         self.image = pygame.image.load(self.image_path)
@@ -20,4 +22,14 @@ class Button:
         self.rect.topleft = (self.x, self.y)
         
     def draw(self, surface):
+        action = False
+        mouse_position = pygame.mouse.get_pos()
+        if self.rect.collidepoint(mouse_position):
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
+                self.clicked = True
+                action = True
+        if pygame.mouse.get_pressed()[0] == 0:
+            self.clicked = False
         surface.blit(self.image, (self.x, self.y))
+        
+        return action

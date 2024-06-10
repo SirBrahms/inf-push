@@ -46,6 +46,11 @@ while running:
     
     #set player number
         #work in progress
+        
+        #for buttons once clicked:
+        #if button.draw() == True:
+        #   insert funcionality
+    
     
     pygame.display.update()
     

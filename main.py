@@ -3,6 +3,7 @@ from sys import exit
 from Player_Manager import PlayerManager
 pygame.init()
 pygame.font.init()
+pygame.mixer.init()
 
 clock = pygame.time.Clock()
 player_manager = PlayerManager()
@@ -32,6 +33,8 @@ logo_Y = screen_center_Y - logo_height // 2
 
 menu_background = pygame.image.load("assets/menu_background.png")
 menu_background = pygame.transform.scale(menu_background, (screen_width, screen_height))
+
+pygame.mixer.music.load("assets/music/main_theme.mp3")
 
 #text stuff
 text_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", screen_width//24)
@@ -85,6 +88,7 @@ while running:
         logo_done = True
         menu = True
         current_selection=0
+        pygame.mixer.music.play(-1)
         
     while menu:
         title_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf",150)
@@ -114,6 +118,7 @@ while running:
         
     #fps ceiling
     clock.tick(60)
+    
 #quitting
 pygame.time.wait(4000)
 pygame.quit()

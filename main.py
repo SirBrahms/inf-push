@@ -81,6 +81,7 @@ while running:
     #set gamemode
     if player_manager.pn_set and not player_manager.mode_set:
         clear()
+        pygame.time.wait(500)
         draw_text("Select Game Mode:", text_font, (255,255,255), int(screen_center_X*0.7), 0)
         safe_button = Button(screen_width*0.25, screen_center_Y, 1, "assets/buttons/gamemode_buttons/safe_button.png")
         if safe_button.draw(screen):
@@ -88,13 +89,11 @@ while running:
         risky_button = Button(screen_width*0.75, screen_center_Y, 1, "assets/buttons/gamemode_buttons/risky_button.png")
         if risky_button.draw(screen):
             player_manager.set_gamemode(True)
-        print(player_manager.risky_mode)
         pygame.display.flip()
-        clear()
     
     #fps ceiling
     clock.tick(60)
-
+    pygame.display.update()
 #quitting
 pygame.time.wait(4000)
 pygame.quit()

@@ -70,6 +70,8 @@ while running:
                     player_manager.set_gamemode(False)
                 if event.key == pygame.K_r:
                     player_manager.set_gamemode(True)
+            if player_manager.pn_set and player_manager.mode_set:
+                clear()
         
     #display logo
     if not logo_done:

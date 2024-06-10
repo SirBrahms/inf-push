@@ -3,6 +3,8 @@ from sys import exit
 from Player_Manager import PlayerManager
 pygame.init()
 
+clock = pygame.time.Clock()
+
 #screen setup
 screen_width = 1200
 screen_height = 700
@@ -21,7 +23,6 @@ logo_X = screen_center_X - logo_width // 2
 logo_Y = screen_center_Y - logo_height // 2
 logo_display_time = 5000 #milliseconds
 logo_timer = pygame.time.get_ticks() 
-
 
 
 running = True
@@ -52,6 +53,9 @@ while running:
     
     
     pygame.display.update()
+    
+    #fps ceiling
+    clock.tick(60)
     
 #quitting
 pygame.time.wait(4000)

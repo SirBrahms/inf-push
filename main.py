@@ -31,8 +31,11 @@ logo_width, logo_height = logo.get_size()
 logo_X = screen_center_X - logo_width // 2
 logo_Y = screen_center_Y - logo_height // 2
 
-menu_background = pygame.image.load("assets/menu_background.png")
+menu_background = pygame.image.load("assets/backgrounds/menu_background.png")
 menu_background = pygame.transform.scale(menu_background, (screen_width, screen_height))
+
+rules_background = pygame.image.load("assets/backgrounds/rules_background.png")
+rules_background = pygame.transform.scale(rules_background, (screen_width, screen_height))
 
 pygame.mixer.music.load("assets/music/main_theme.mp3")
 
@@ -41,6 +44,15 @@ text_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", screen_widt
 def draw_text(text, font, colour, x, y):
     image = font.render(text, True, colour)
     screen.blit(image, (x,y))
+    
+def load_rules(filename):
+    with open(filename, 'r') as file:
+        rules = file.readlines()
+    return rules
+
+rules = load_rules("assets/rules.txt")
+rule_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", 40)
+scroll_offset = 0
 
 running = True
 while running:
@@ -115,6 +127,29 @@ while running:
                         current_selection -= 1
                 if event.key == pygame.K_RETURN:
                     menu=False
+                if event.key == pygame.K_RETURN and current_selection == 1:
+                    rules_menu = True
+                    scroll_offset = 0
+                    clear()
+                    while rules_menu:
+                        screen.blit(rules_background, (0, 0))
+                        y = 50 - scroll_offset
+                        for line in rules:
+                            draw_text(line.strip(), rule_font, (255, 255, 255), 50, y)
+                            y += 30
+
+                        pygame.display.flip()
+                        for event in pygame.event.get():
+                            if event.type == pygame.KEYDOWN:
+                                if event.key == pygame.K_DOWN:
+                                    scroll_offset += 30
+                                if event.key == pygame.K_UP:
+                                    scroll_offset -= 30
+                                    if scroll_offset < 0:
+                                        scroll_offset = 0
+                                if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
+                                    rules_menu = False
+                                    menu = True
         
     #fps ceiling
     clock.tick(60)

@@ -1,14 +1,15 @@
 from main import *
 from Card import *
+import pygame
 
 class Player:
-    def __init__(self,name,avatar, avatar_X, avatar_Y):
+    def __init__(self,name, avatar_path, avatar_X, avatar_Y):
         self.name=name
-        self.avatar=avatar
+        self.avatar_path = avatar_path
         self.avatar_X=avatar_X
         self.avatar_Y=avatar_Y
         self.score=0
-        
+        self.avatar = pygame.image.load(self.avatar_path)
 
         # card lists
         self.cards_green = []

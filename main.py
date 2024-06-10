@@ -14,7 +14,7 @@ player_manager = PlayerManager()
 
 #logo
 logo_done = False
-logo = pygame.image.load("data/logo.png")
+logo = pygame.image.load("assets/logo.png")
 logo_width, logo_height = logo.get_size()
 logo_X = screen_center_X - logo_width // 2
 logo_Y = screen_center_Y - logo_height // 2

@@ -30,6 +30,9 @@ logo_width, logo_height = logo.get_size()
 logo_X = screen_center_X - logo_width // 2
 logo_Y = screen_center_Y - logo_height // 2
 
+menu_background = pygame.image.load("assets/menu_background.png")
+menu_background = pygame.transform.scale(menu_background, (screen_width, screen_height))
+
 #text stuff
 text_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", screen_width//24)
 def draw_text(text, font, colour, x, y):
@@ -47,7 +50,7 @@ while running:
             pygame.quit()
             exit()
         #set player number
-        if logo_done and not player_manager.pn_set:
+        if logo_done and not player_manager.pn_set and menu==False and current_selection==0:
             clear()
             draw_text("Select Number of Players (2-6)", text_font, (255,255,255), 10, 0)
             if event.type == pygame.KEYDOWN:
@@ -80,6 +83,34 @@ while running:
         pygame.time.delay(5000)
         clear()
         logo_done = True
+        menu = True
+        current_selection=0
+        
+    while menu:
+        title_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf",150)
+        screen.blit(menu_background, (0, 0))
+        draw_text("PUSH", title_font, (255, 255, 255), 50, 0)
+        draw_text("The Game", text_font, (255, 255, 255), 50,130)
+        if current_selection == 0:
+            draw_text("Start Game", text_font, (255, 255, 0), 50, 300)
+            draw_text("Rules", text_font, (255, 255, 255), 50, 360)
+            pygame.display.flip()
+        else:
+            draw_text("Start Game", text_font, (255, 255, 255), 50, 300)
+            draw_text("Rules", text_font, (255, 255, 0), 50, 360)
+            pygame.display.flip()
+                
+
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_DOWN:
+                    if current_selection == 0:
+                        current_selection +=1                                          
+                if event.key == pygame.K_UP:
+                    if current_selection == 1:
+                        current_selection -= 1
+                if event.key == pygame.K_RETURN:
+                    menu=False
         
     #fps ceiling
     clock.tick(60)

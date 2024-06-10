@@ -34,5 +34,4 @@ class Button:
         if pygame.mouse.get_pressed()[0] == 0:
             self.clicked = False
         surface.blit(self.image, self.rect)
-        pygame.display.flip()
         return action

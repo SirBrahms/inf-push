@@ -1,6 +1,5 @@
 from LimList import *
 
-
 class PlayerManager:
     def __init__(self):
         self.cards = []
@@ -10,6 +9,8 @@ class PlayerManager:
         self.stacks = [LimList([]), LimList([]), LimList([])]
         self.direction = 1 # 1 = right / -1 = left
         self.end_game_req = False
+        self.risky_mode = None
+        self.mode_set = False
     
     def get_card(self):
         if (len(self.cards) - 1 == 0):
@@ -19,6 +20,10 @@ class PlayerManager:
     def set_player_number(self, player_number):
         self.player_number = player_number
         self.pn_set = True
+    
+    def set_gamemode(self, risky): #risky is a boolean
+        self.risky_mode = risky
+        self.mode_set = True
         
     def add_card_to_stack(self, card, stack_number):
         self.stacks[stack_number].append(card)

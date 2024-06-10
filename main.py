@@ -21,6 +21,8 @@ pygame.display.set_caption("Push")
 screen_center_X = screen_width // 2
 screen_center_Y = screen_height // 2
 
+def clear():
+    screen.fill((0,0,0))
 
 #logo
 logo_done = False
@@ -52,31 +54,43 @@ while running:
         screen.blit(logo, (logo_X, logo_Y))
         pygame.display.flip()
         pygame.time.delay(5000)
-        screen.fill((0,0,0))
+        clear()
         logo_done = True
     
     #set player number
     if not player_manager.pn_set:
-        draw_text("Select number of Players:", text_font, (255,255,255), int(screen_center_X*0.5), 0)
+        clear()
+        draw_text("Select Number of Players:", text_font, (255,255,255), int(screen_center_X*0.5), 0)
         pn_button1 = Button(screen_width*0.1, screen_center_Y, 1, "assets/buttons/player_number_buttons/2_players_button.png")
-        if pn_button1.draw(screen) == True:
+        if pn_button1.draw(screen):
             player_manager.set_player_number(2)
         pn_button2 = Button(screen_width*0.3, screen_center_Y, 1, "assets/buttons/player_number_buttons/3_players_button.png")
-        if pn_button2.draw(screen) == True:
+        if pn_button2.draw(screen):
             player_manager.set_player_number(3)
         pn_button3 = Button(screen_width*0.5, screen_center_Y, 1, "assets/buttons/player_number_buttons/4_players_button.png")
-        if pn_button3.draw(screen) == True:
+        if pn_button3.draw(screen):
             player_manager.set_player_number(4)
         pn_button4 = Button(screen_width*0.7, screen_center_Y, 1, "assets/buttons/player_number_buttons/5_players_button.png")
-        if pn_button4.draw(screen) == True:
+        if pn_button4.draw(screen):
             player_manager.set_player_number(5)
         pn_button5 = Button(screen_width*0.9, screen_center_Y, 1, "assets/buttons/player_number_buttons/6_players_button.png")
-        if pn_button5.draw(screen) == True:
+        if pn_button5.draw(screen):
             player_manager.set_player_number(6)
-    else:
-        screen.fill((0,0,0))
-     
-    pygame.display.update()
+        pygame.display.flip()
+    
+    #set gamemode
+    if player_manager.pn_set and not player_manager.mode_set:
+        clear()
+        draw_text("Select Game Mode:", text_font, (255,255,255), int(screen_center_X*0.7), 0)
+        safe_button = Button(screen_width*0.25, screen_center_Y, 1, "assets/buttons/gamemode_buttons/safe_button.png")
+        if safe_button.draw(screen):
+            player_manager.set_gamemode(False)
+        risky_button = Button(screen_width*0.75, screen_center_Y, 1, "assets/buttons/gamemode_buttons/risky_button.png")
+        if risky_button.draw(screen):
+            player_manager.set_gamemode(True)
+        print(player_manager.risky_mode)
+        pygame.display.flip()
+        clear()
     
     #fps ceiling
     clock.tick(60)

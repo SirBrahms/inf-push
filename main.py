@@ -46,7 +46,6 @@ while running:
     
     #set player number
         #work in progress
-
     
     pygame.display.update()
     

@@ -12,6 +12,9 @@ class Button:
         self.image = None
         self.mouse_position = None
         self.clicked = False
+        self.center_X = None
+        self.center_Y = None
+        self.load_image()
     
     def load_image(self):
         self.image = pygame.image.load(self.image_path)
@@ -19,8 +22,8 @@ class Button:
         self.height = self.image.get_height()
         self.image = pygame.transform.scale(self.image, (int(self.width * self.scale), int(self.height * self.scale)))
         self.rect = self.image.get_rect()
-        self.rect.topleft = (self.x, self.y)
-        
+        self.rect.center = (self.x, self.y)
+
     def draw(self, surface):
         action = False
         mouse_position = pygame.mouse.get_pos()
@@ -30,6 +33,6 @@ class Button:
                 action = True
         if pygame.mouse.get_pressed()[0] == 0:
             self.clicked = False
-        surface.blit(self.image, (self.x, self.y))
-        
+        surface.blit(self.image, self.rect)
+        pygame.display.flip()
         return action

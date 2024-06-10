@@ -1,4 +1,5 @@
 import pygame
+import random
 from sys import exit
 from Player_Manager import PlayerManager
 pygame.init()
@@ -53,6 +54,45 @@ def load_rules(filename):
 rules = load_rules("assets/rules.txt")
 rule_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", 40)
 scroll_offset = 0
+
+def die_sides_graphic():
+    die_sides=["die_black.png","die_blue.png","die_green.png","die_purple.png","die_red.png","die_yellow.png"]
+    random_die_side=pygame.image.load("assets/die_sides/"+random.choice(die_sides))
+    screen.blit(random_die_side,(450,200))
+    
+def roll_dice():
+    return_pressed=False
+    while not return_pressed:
+        die_sides_graphic()
+        pygame.display.flip()
+        pygame.time.delay(1000)
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    return_pressed=True
+    if return_pressed:
+        die_sides_graphic()
+        pygame.display.flip()
+        pygame.time.delay(100)
+        die_sides_graphic()
+        pygame.display.flip()
+        pygame.time.delay(100)
+        die_sides_graphic()
+        pygame.display.flip()
+        pygame.time.delay(100)
+        die_sides_graphic()
+        pygame.display.flip()
+        pygame.time.delay(200)
+        die_sides_graphic()
+        pygame.display.flip()
+        pygame.time.delay(500)
+        die_sides_graphic()
+        pygame.display.flip()
+        pygame.time.delay(900)
+        die_sides_graphic()
+        pygame.display.flip()
+        pygame.time.delay(2000)
+        return random_die_side
 
 running = True
 while running:
@@ -150,7 +190,10 @@ while running:
                                 if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
                                     rules_menu = False
                                     menu = True
-        
+                                    
+    
+    
+
     #fps ceiling
     clock.tick(60)
     

@@ -21,8 +21,7 @@ logo = pygame.image.load("assets/logo.png")
 logo_width, logo_height = logo.get_size()
 logo_X = screen_center_X - logo_width // 2
 logo_Y = screen_center_Y - logo_height // 2
-logo_display_time = 5000 #milliseconds
-logo_timer = pygame.time.get_ticks() 
+
 
 
 running = True
@@ -35,19 +34,14 @@ while running:
             pygame.quit()
             exit()
             
-    #clear screen if logo displayed for long enough
-    current_time = pygame.time.get_ticks()
-    if current_time - logo_timer >= logo_display_time:
-        screen.fill((0, 0, 0))  
-        pygame.display.flip()   
-        pygame.time.delay(1000) 
-        running = False
     
-    #or display logo
-    else:
+    # display logo
+    if not logo_done:
         screen.blit(logo, (logo_X, logo_Y))
         pygame.display.flip()
-    
+        pygame.time.delay(5000)
+        screen.fill((0,0,0))
+        logo_done = True
     
     
     

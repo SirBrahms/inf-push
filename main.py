@@ -1,8 +1,8 @@
 import pygame
 import random
 from sys import exit
-from bridge import player_manager
-from Player import *
+from bridge import *
+from Player import Player
 pygame.init()
 pygame.font.init()
 pygame.mixer.init()
@@ -119,6 +119,7 @@ def roll_dice():
         pygame.display.flip()
         pygame.time.delay(2000)
         return random_die_side
+
 #player:positions needs reordering for game order to make sense
 player_positions = [ 
     [screen_center_X, screen_center_Y-(screen_height//2.5)],
@@ -128,6 +129,7 @@ player_positions = [
     [screen_center_X-(screen_width//2.5), screen_center_Y+(screen_height//2.5)],
     [screen_center_X+(screen_width//2.5), screen_center_Y+(screen_height//2.5)]
     ]
+
 player1 = Player("assets/player_icons/player_pfp_blue.png", player_positions[0][0], player_positions[0][1])
 player_manager.add_player(player1, "assets/player_icons/player_pfp_blue.png", player_positions[0][0], player_positions[0][1])
 player2 = Player("assets/player_icons/player_pfp_green.png", player_positions[1][0], player_positions[1][1])

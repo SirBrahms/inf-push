@@ -1,5 +1,4 @@
 from bridge import player_manager
-from main import roll_dice
 from Card import *
 import pygame
 
@@ -26,10 +25,11 @@ class Player:
         player_manager.add_card_to_stack(card, stack_num)
 
     def get_card_stack(self, stack_num):
+        from main import roll_dice
         lst_temp = player_manager.stacks[stack_num].inner_list
-        c_card_temp = Card.ColourCard("aaa", "green", "1") # temporary card(s) to generate the type
-        d_card_temp = Card.DiceCard("aaa")
-        s_card_temp = Card.SwitchCard("aaaa")
+        c_card_temp = ColourCard("aaa", "green", "1") # temporary card(s) to generate the type
+        d_card_temp = DiceCard("aaa")
+        s_card_temp = SwitchCard("aaaa")
 
         for f in lst_temp:
             if (type(f) == type(d_card_temp)):

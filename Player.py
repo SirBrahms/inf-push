@@ -83,7 +83,7 @@ class Player:
 
     # gets an enitre stack of cards (selected by the stack num), divides the ColourCards into their respective lists and does the actions of all the special cards
     def get_card_stack(self, stack_num:int, rfunc):
-        lst_temp = player_manager.stacks[stack_num].inner_list
+        lst_temp:Card = player_manager.stacks[stack_num].inner_list
         c_card_temp = ColourCard("aaa", "green", "1") # temporary card(s) to generate the type
         d_card_temp = DiceCard("aaa")
         s_card_temp = SwitchCard("aaaa")
@@ -92,7 +92,16 @@ class Player:
             if (type(f) == type(d_card_temp)):
                 side = rfunc()
                 color = (side.split("die_")[1].split(".png")[0])
-                lst_temp = [lst_temp for x in lst_temp if x.path.find(color) == -1]
+                if (color == "black"):
+                    lst_temp.clear()
+                    return
+                clipboard = []
+                for e in lst_temp:
+                    if (type(e) == type(c_card_temp)):
+                        if (e.colour != color):
+                            clipboard.append(e)
+                
+                lst_temp = clipboard        
 
         for e in lst_temp:
             if (type(e) == type(c_card_temp)):

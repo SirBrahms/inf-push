@@ -113,13 +113,14 @@ def roll_dice():
         pygame.display.flip()
         pygame.time.delay(900)
         die_sides=["die_black.png","die_blue.png","die_green.png","die_purple.png","die_red.png","die_yellow.png"]
-        random_die_side=pygame.image.load("assets/die_sides/"+random.choice(die_sides))
+        path = "assets/die_sides/"+random.choice(die_sides)
+        random_die_side=pygame.image.load(path)
         screen.blit(random_die_side,(450*scale,200*scale))
         dice_sound_effect=pygame.mixer.Sound("assets/music/dice_sound.mp3")
         pygame.mixer.Sound.play(dice_sound_effect)
         pygame.display.flip()
         pygame.time.delay(2000)
-        return random_die_side
+        return path
 
 player_positions = [ 
     [screen_center_X-(screen_width//2.5), screen_center_Y-(screen_height//2.5)],
@@ -287,7 +288,7 @@ if (__name__ == "__main__"):
                     if (player_manager.stack_selection):
                         player_manager.old_current_player = player_manager.current_player
                         print(player_manager.amt_of_selecting_players)
-                        if (player_manager.amt_of_selecting_players != 3): # not every possible player has selected their stack
+                        if (player_manager.amt_of_selecting_players != 2): # not every possible player has selected their stack
                             print("here")
                             if (event.key == pygame.K_1):
                                 player_manager.players[player_manager.current_player].get_card_stack(0, roll_dice)

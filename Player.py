@@ -3,7 +3,11 @@ from Card import *
 import pygame
 
 screen_height = 700 #do not change!
-
+def draw_text(surface, text, font, colour, x, y):
+    image = font.render(text, True, colour)
+    surface.blit(image, (x,y))
+    
+    
 class Player:
     def __init__(self, avatar_path, avatar_X, avatar_Y, stackset_X, stackset_Y):
         self.avatar_path = avatar_path
@@ -140,12 +144,25 @@ class Player:
         cards_secured_icon_X = self.stackset_X + (self.stack_width//2)
         cards_secured_icon_Y = self.stackset_Y + self.stack_height//2
         
-        #stack icons center coords
+        text_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", self.stack_height)
+        
         surface.blit(self.avatar, (avatar_center_X, avatar_center_Y))
+        
         surface.blit(self.cards_green_icon, (cards_green_icon_X, cards_green_icon_Y))
+        draw_text(surface, "insert variable", text_font, (255,255,255), cards_green_icon_X, cards_green_icon_Y)
+        
         surface.blit(self.cards_red_icon, (cards_red_icon_X, cards_red_icon_Y))
+        draw_text(surface, "insert variable", text_font, (255,255,255), cards_red_icon_X, cards_red_icon_Y)
+        
         surface.blit(self.cards_blue_icon, (cards_blue_icon_X, cards_blue_icon_Y))
+        draw_text(surface, "insert variable", text_font, (255,255,255), cards_blue_icon_X, cards_blue_icon_Y)
+        
         surface.blit(self.cards_yellow_icon, (cards_yellow_icon_X, cards_yellow_icon_Y))
+        draw_text(surface, "insert variable", text_font, (255,255,255), cards_yellow_icon_X, cards_yellow_icon_Y)
+        
         surface.blit(self.cards_purple_icon, (cards_purple_icon_X, cards_purple_icon_Y))
+        draw_text(surface, "insert variable", text_font, (255,255,255), cards_purple_icon_X, cards_purple_icon_Y)
+        
         surface.blit(self.cards_secured_icon, (cards_secured_icon_X, cards_secured_icon_Y))
+        draw_text(surface, "insert variable", text_font, (255,255,255), cards_secured_icon_X, cards_secured_icon_Y)
         

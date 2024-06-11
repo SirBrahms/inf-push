@@ -127,8 +127,8 @@ player_positions = [
     [screen_center_X+(screen_width//4), screen_center_Y+(screen_height//4)]
     ]
     
-                    
-  
+                
+    
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 running = True
@@ -207,6 +207,7 @@ while running:
                                 if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
                                     rules_menu = False
                                     menu = True
+
                                     
     
     

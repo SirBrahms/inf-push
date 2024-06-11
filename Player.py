@@ -9,7 +9,7 @@ class Player:
         self.avatar_Y=avatar_Y
         self.score=0
         self.avatar = pygame.image.load(self.avatar_path)
-        self.is_playing = None
+        self.is_playing = False
 
         # card lists
         self.cards_green = []
@@ -77,6 +77,9 @@ class Player:
             self.secured_cards += self.cards_yellow
         if (color == "purple"):
             self.secured_cards += self.cards_purple
+    
+    def set_is_playing(self, is_playing):
+        self.is_playing = is_playing
             
     def draw(self, surface, screen_height):
         image = pygame.image.load(self.avatar_path)

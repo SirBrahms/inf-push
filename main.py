@@ -15,7 +15,7 @@ scale = 1 #do not change unless absolutely necessary
 
 #screen setup
 screen_width = 1200*scale
-screen_height = 700*scale
+screen_height = 600*scale
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Push")
 #useful variables 
@@ -117,6 +117,19 @@ def roll_dice():
         pygame.display.flip()
         pygame.time.delay(2000)
         return random_die_side
+    
+player_positions = [
+    [screen_center_X, screen_center_Y-(screen_height//4)],
+    [screen_center_X-(screen_width//4), screen_center_Y-(screen_height//4)],
+    [screen_center_X+(screen_width//4), screen_center_Y-(screen_height//4)],
+    [screen_center_X, screen_center_Y+(screen_height//4)],
+    [screen_center_X-(screen_width//4), screen_center_Y+(screen_height//4)],
+    [screen_center_X+(screen_width//4), screen_center_Y+(screen_height//4)]
+    ]
+    
+                    
+  
+
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 running = True
 while running:

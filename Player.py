@@ -43,6 +43,14 @@ class Player:
     def count_score(self):
         for e in self.cards_green:
             self.score += e.value
+        for e in self.cards_red:
+            self.score += e.value
+        for e in self.cards_blue:
+            self.score += e.value
+        for e in self.cards_yellow:
+            self.score += e.value
+        for e in self.cards_purple:
+            self.score += e.value
 
     def secure_color(self):
         pass

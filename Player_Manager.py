@@ -1,4 +1,5 @@
 from LimList import *
+from bridge2 import deck
 import pygame
 
 class PlayerManager:
@@ -14,7 +15,7 @@ class PlayerManager:
         self.mode_set = False
     
     def generate_cards(self):
-        pass
+        temp_list = deck[-2:]
 
     def get_card(self):
         if (len(self.cards) - 1 == 0):

@@ -3,6 +3,9 @@ from Card import *
 import pygame
 
 screen_height = 700 #do not change!
+screen_width = 1200 #do not change!
+screen_center_Y = screen_height//2
+screen_center_X = screen_width//2
 def draw_text(surface, text, font, colour, x, y):
     image = font.render(text, True, colour)
     surface.blit(image, (x,y))
@@ -78,7 +81,10 @@ class Player:
     def get_card(self):
         self.current_card = player_manager.get_card()
         self.current_card_disp = pygame.image.load(self.current_card.path)
-
+        current_card_disp_height = self.current_card_disp.get_height()
+        current_card_disp_width = self.current_card_disp.get_width()
+        self.current_card_disp_X = screen_center_X-current_card_disp_width//2
+        self.current_card_disp_Y = screen_center_Y-current_card_disp_height//2
         return self.current_card
 
     # gets an enitre stack of cards (selected by the stack num), divides the ColourCards into their respective lists and does the actions of all the special cards

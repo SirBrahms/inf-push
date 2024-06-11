@@ -308,7 +308,7 @@ if (__name__ == "__main__"):
             ### Drawing stuff goes here
             table()
             if (current_player.current_card != None):
-                screen.blit(current_player.current_card_disp, (screen_center_X, screen_center_Y)) # needs to be changed, I'll leave that up to the graphics people (thank you)
+                screen.blit(current_player.current_card_disp, (current_player.current_card_disp_X, current_player.current_card_disp_Y)) # needs to be changed, I'll leave that up to the graphics people (thank you)
             
             # highlight current player
             for i in range(len(player_manager.players)):

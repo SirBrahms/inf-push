@@ -77,3 +77,12 @@ class Player:
             self.secured_cards += self.cards_yellow
         if (color == "purple"):
             self.secured_cards += self.cards_purple
+            
+    def draw(self, surface, screen_height):
+        image = pygame.image.load(self.avatar_path)
+        image = pygame.transform.scale(image, (screen_height*0.1, screen_height*0.1))
+        width = image.get_width()
+        height = image.get_height()
+        center_X = self.avatar_X - width//2
+        center_Y = self.avatar_Y - height//2
+        surface.blit(image, (center_X, center_Y))

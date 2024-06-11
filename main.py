@@ -16,12 +16,12 @@ scale = 1 #do not change unless absolutely necessary
 
 #screen setup
 screen_width = 1200*scale
-screen_height = 600*scale
+screen_height = 700*scale
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Push")
 #useful variables 
-screen_center_X = screen_width // 2
-screen_center_Y = screen_height // 2
+screen_center_X = screen_width//2
+screen_center_Y = screen_height//2
 
 def clear():
     screen.fill((0,0,0))
@@ -120,12 +120,12 @@ def roll_dice():
         return random_die_side
     
 player_positions = [
-    [screen_center_X, screen_center_Y-(screen_height//4)],
-    [screen_center_X-(screen_width//4), screen_center_Y-(screen_height//4)],
-    [screen_center_X+(screen_width//4), screen_center_Y-(screen_height//4)],
-    [screen_center_X, screen_center_Y+(screen_height//4)],
-    [screen_center_X-(screen_width//4), screen_center_Y+(screen_height//4)],
-    [screen_center_X+(screen_width//4), screen_center_Y+(screen_height//4)]
+    [screen_center_X, screen_center_Y-(screen_height//3)],
+    [screen_center_X-(screen_width//3), screen_center_Y-(screen_height//3)],
+    [screen_center_X+(screen_width//3), screen_center_Y-(screen_height//3)],
+    [screen_center_X, screen_center_Y+(screen_height//3)],
+    [screen_center_X-(screen_width//3), screen_center_Y+(screen_height//3)],
+    [screen_center_X+(screen_width//3), screen_center_Y+(screen_height//3)]
     ]
 player1 = Player("assets/player_icons/player_pfp_blue.png", player_positions[0][0], player_positions[0][1])
 player_manager.add_player(player1, "assets/player_icons/player_pfp_blue.png", player_positions[0][0], player_positions[0][1])
@@ -163,7 +163,7 @@ while running:
     if not logo_done:
         screen.blit(logo, (logo_X, logo_Y))
         pygame.display.flip()
-        pygame.time.delay(5000)
+        pygame.time.delay(500) #temporarily shortened for testing
         clear()
         logo_done = True
         menu = True
@@ -218,8 +218,13 @@ while running:
                                 if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
                                     rules_menu = False
                                     menu = True
-
-    
+    #provisional drawing player's avatars                               
+    player1.draw(screen, screen_height)
+    player2.draw(screen, screen_height)
+    player3.draw(screen, screen_height)
+    player4.draw(screen, screen_height)
+    player5.draw(screen, screen_height)
+    player6.draw(screen, screen_height)
 
     #fps ceiling
     clock.tick(60)

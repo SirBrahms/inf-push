@@ -20,25 +20,32 @@ class Player:
         self.avatar_Y=avatar_Y
         self.is_playing = False
 
-        # card lists
+        # card stuff
         self.cards_green = []
+        self.score_green = 0
         self.cards_green_icon = pygame.image.load("assets/stacks/stack_green.png")
         
         self.cards_red = []
+        self.score_red = 0
         self.cards_red_icon = pygame.image.load("assets/stacks/stack_red.png")
         
         self.cards_blue = []
+        self.score_blue = 0
         self.cards_blue_icon = pygame.image.load("assets/stacks/stack_blue.png")
         
         self.cards_yellow = []
+        self.score_yellow = 0
         self.cards_yellow_icon = pygame.image.load("assets/stacks/stack_yellow.png")
         
         self.cards_purple = []
+        self.score_purple = 0
         self.cards_purple_icon = pygame.image.load("assets/stacks/stack_purple.png")
 
         self.secured_cards = []
+        self.score_secured = 0
         self.cards_secured_icon = pygame.image.load("assets/stacks/stack_secured.png")
         
+        # card icons
         self.cards_icon_scale = screen_height*0.06
         self.cards_green_icon = pygame.transform.scale(self.cards_green_icon, (self.cards_icon_scale, self.cards_icon_scale)) #actual scaling is temp
         self.cards_red_icon = pygame.transform.scale(self.cards_red_icon, (self.cards_icon_scale, self.cards_icon_scale))
@@ -90,24 +97,37 @@ class Player:
                     self.cards_purple.append(e)
             elif (type(e) == type(s_card_temp)):
                 player_manager.switch_direction()
+    
+    # counts the score per color and updates the connected variables
+    def count_individual_scores(self):
+        # reset everything since old cards don't go away
+        self.score_green = 0
+        self.score_red = 0
+        self.score_blue = 0
+        self.score_yellow = 0
+        self.score_purple = 0
+        self.score_secured = 0
         
+        # count
+        for e in self.cards_green:
+            self.score_green += e.value
+        for e in self.cards_red:
+            self.score_red += e.value
+        for e in self.cards_blue:
+            self.score_blue += e.value
+        for e in self.cards_yellow:
+            self.score_yellow += e.value
+        for e in self.cards_purple:
+            self.score_purple += e.value
+        for e in self.secured_cards:
+            self.score_secured += e.value
+    
     # counts the final score by adding up the value of each card
     def count_score(self):
-        for e in self.cards_green:
-            self.score += e.value
-        for e in self.cards_red:
-            self.score += e.value
-        for e in self.cards_blue:
-            self.score += e.value
-        for e in self.cards_yellow:
-            self.score += e.value
-        for e in self.cards_purple:
-            self.score += e.value
-        for e in self.secured_cards:
-            self.score += e.value
+        self.score = self.score_green + self.score_blue + self.score_purple + self.score_red + self.score_yellow + self.score_secured
 
     # moves an entire color into the secured_cards list
-    def secure_color(self, color):
+    def secure_color(self, color:str):
         if (color == "red"):
             self.secured_cards += self.cards_red
             self.cards_red.clear()
@@ -125,7 +145,7 @@ class Player:
             self.cards_purple.clear()
     
     # sets whether the player is playing
-    def set_is_playing(self, is_playing):
+    def set_is_playing(self, is_playing:bool):
         self.is_playing = is_playing
     
     # draws the player to the screen (tysm Michael)    
@@ -159,20 +179,20 @@ class Player:
         surface.blit(self.avatar, (avatar_center_X, avatar_center_Y))
         
         surface.blit(self.cards_green_icon, (cards_green_icon_X, cards_green_icon_Y))
-        draw_text(surface, "insert variable", text_font, (255,255,255), cards_green_icon_X, cards_green_icon_Y)
+        draw_text(surface, self.score_green, text_font, (255,255,255), cards_green_icon_X, cards_green_icon_Y)
         
         surface.blit(self.cards_red_icon, (cards_red_icon_X, cards_red_icon_Y))
-        draw_text(surface, "insert variable", text_font, (255,255,255), cards_red_icon_X, cards_red_icon_Y)
+        draw_text(surface, self.score_red, text_font, (255,255,255), cards_red_icon_X, cards_red_icon_Y)
         
         surface.blit(self.cards_blue_icon, (cards_blue_icon_X, cards_blue_icon_Y))
-        draw_text(surface, "insert variable", text_font, (255,255,255), cards_blue_icon_X, cards_blue_icon_Y)
+        draw_text(surface, self.score_blue, text_font, (255,255,255), cards_blue_icon_X, cards_blue_icon_Y)
         
         surface.blit(self.cards_yellow_icon, (cards_yellow_icon_X, cards_yellow_icon_Y))
-        draw_text(surface, "insert variable", text_font, (255,255,255), cards_yellow_icon_X, cards_yellow_icon_Y)
+        draw_text(surface, self.score_yellow, text_font, (255,255,255), cards_yellow_icon_X, cards_yellow_icon_Y)
         
         surface.blit(self.cards_purple_icon, (cards_purple_icon_X, cards_purple_icon_Y))
-        draw_text(surface, "insert variable", text_font, (255,255,255), cards_purple_icon_X, cards_purple_icon_Y)
+        draw_text(surface, self.score_purple, text_font, (255,255,255), cards_purple_icon_X, cards_purple_icon_Y)
         
         surface.blit(self.cards_secured_icon, (cards_secured_icon_X, cards_secured_icon_Y))
-        draw_text(surface, "insert variable", text_font, (255,255,255), cards_secured_icon_X, cards_secured_icon_Y)
+        draw_text(surface, self.score_secured, text_font, (255,255,255), cards_secured_icon_X, cards_secured_icon_Y)
         

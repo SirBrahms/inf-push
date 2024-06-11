@@ -182,9 +182,11 @@ class Player:
         
         surface.blit(self.avatar, (avatar_center_X, avatar_center_Y))
         if self.turn:
-            self.highlight = pygame.transform.scale(self.highlight, (self.avatar_width*2, self.avatar_height*4))
-            surface.blit(self.highlight, (avatar_center_X, avatar_center_Y))
-        
+            self.highlight = pygame.transform.scale(self.highlight, (self.avatar_width*1.2, self.avatar_height*1.5))
+            if avatar_center_Y <= screen_height//2:
+                surface.blit(self.highlight, (avatar_center_X-15, avatar_center_Y))
+            else:
+                surface.blit(self.highlight, (avatar_center_X-15, avatar_center_Y-75))
         surface.blit(self.cards_green_icon, (cards_green_icon_X, cards_green_icon_Y))
         draw_text(surface, str(self.score_green), text_font, (255,255,255), cards_green_icon_X+8, cards_green_icon_Y+4)
         

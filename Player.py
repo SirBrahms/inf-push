@@ -80,7 +80,7 @@ class Player:
             
     def draw(self, surface, screen_height):
         image = pygame.image.load(self.avatar_path)
-        image = pygame.transform.scale(image, (screen_height*0.1, screen_height*0.1))
+        image = pygame.transform.scale(image, (screen_height*0.2, screen_height*0.2))
         width = image.get_width()
         height = image.get_height()
         center_X = self.avatar_X - width//2

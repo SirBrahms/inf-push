@@ -140,11 +140,20 @@ player_manager.add_player(player5, "assets/player_icons/player_pfp_red.png", pla
 player6 = Player("assets/player_icons/player_pfp_yellow.png", player_positions[5][0], player_positions[5][1])
 player_manager.add_player(player6, "assets/player_icons/player_pfp_yellow.png", player_positions[5][0], player_positions[5][1])
 
+def table():
+    player1.draw(screen, screen_height)
+    player2.draw(screen, screen_height)
+    player3.draw(screen, screen_height)
+    player4.draw(screen, screen_height)
+    player5.draw(screen, screen_height)
+    player6.draw(screen, screen_height)
+    player_manager.draw_direction(screen, screen_height, 10, screen_center_Y)
 
 deck=["assets/cards/blue1.png","assets/cards/red1.png","assets/cards/yellow1.png","assets/cards/green1.png","assets/cards/purple.png","assets/cards/blue2.png","assets/cards/red2.png","assets/cards/yellow2.png","assets/cards/purple2.png","assets/cards/green2.png","assets/cards/blue3.png","assets/cards/red3.png","assets/cards/yellow3.png","assets/cards/green3.png","assets/cards/purple3.png","assets/cards/blue4.png","assets/cards/red4.png","assets/cards/green4.png","assets/cards/purple4.png","assets/cards/yellow4.png","assets/cards/red5.png","assets/cards/blue5.png","assets/cards/purple5.png","assets/cards/green5.png","assets/cards/yellow5.png","assets/cards/red6.png","assets/cards/blue6.png","assets/cards/purple6.png","assets/cards/green6.png","assets/cards/yellow6.png""assets/cards/swap_direction.png","assets/cards/dice_card.png"]
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 running = True
+setup_done = False
 while running:
     pygame.display.flip()
     #event handler
@@ -160,6 +169,8 @@ while running:
         #set gamemode            
         if player_manager.pn_set and not player_manager.mode_set:
             player_mode_screen()
+            if player_manager.pn_set and player_manager.mode_set:
+                clear()
     if not logo_done:
         screen.blit(logo, (logo_X, logo_Y))
         pygame.display.flip()
@@ -218,17 +229,16 @@ while running:
                                 if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
                                     rules_menu = False
                                     menu = True
-    #provisional drawing player's avatars                               
-    player1.draw(screen, screen_height)
-    player2.draw(screen, screen_height)
-    player3.draw(screen, screen_height)
-    player4.draw(screen, screen_height)
-    player5.draw(screen, screen_height)
-    player6.draw(screen, screen_height)
-
+    if not menu:
+        if logo_done and player_manager.pn_set and player_manager.mode_set:
+            setup_done = True
+    #----------------------------------------------------------------------------------------------
+    #provisional drawing player's avatars
+    if setup_done:        
+        table()
     #fps ceiling
     clock.tick(60)
-    
+    #----------------------------------------------------------------------------------------------
 #quitting
 pygame.time.wait(4000)
 pygame.quit()

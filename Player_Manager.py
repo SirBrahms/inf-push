@@ -1,4 +1,5 @@
 from LimList import *
+import pygame
 
 class PlayerManager:
     def __init__(self):
@@ -36,4 +37,15 @@ class PlayerManager:
     
     def switch_direction(self):
         self.direction *= -1
-    
+        
+    def draw_direction(self, surface, screen_height, x, y):
+        if self.direction == 1:
+            image = pygame.image.load("assets/arrows/counterclockwise_arrow.png")
+        else:
+            image = pygame.image.load("assets/arrows/clockwise_arrow.png")
+        image = pygame.transform.scale(image, (screen_height*0.1, screen_height*0.1))
+        width = image.get_width()
+        height = image.get_height()
+        center_X = x - width//2
+        center_Y = y - height//2
+        surface.blit(image, (center_X, center_Y))

@@ -125,17 +125,17 @@ player_positions = [
     ]
 
 player1 = Player("assets/player_icons/player_pfp_blue.png", player_positions[0][0], player_positions[0][1], screen_center_X, screen_center_Y)
-player_manager.add_player(player1, "assets/player_icons/player_pfp_blue.png", player_positions[0][0], player_positions[0][1])
+player_manager.add_player(player1)
 player2 = Player("assets/player_icons/player_pfp_green.png", player_positions[1][0], player_positions[1][1], screen_center_X, screen_center_Y)
-player_manager.add_player(player2, "assets/player_icons/player_pfp_green.png", player_positions[1][0], player_positions[1][1])
+player_manager.add_player(player2)
 player3 = Player("assets/player_icons/player_pfp_orange.png", player_positions[2][0], player_positions[2][1], screen_center_X, screen_center_Y)
-player_manager.add_player(player3, "assets/player_icons/player_pfp_orange.png", player_positions[2][0], player_positions[2][1])
+player_manager.add_player(player3)
 player4 = Player("assets/player_icons/player_pfp_purple.png", player_positions[3][0], player_positions[3][1], screen_center_X, screen_center_Y)
-player_manager.add_player(player4, "assets/player_icons/player_pfp_purple.png", player_positions[3][0], player_positions[3][1])
+player_manager.add_player(player4)
 player5 = Player("assets/player_icons/player_pfp_red.png", player_positions[4][0], player_positions[4][1], screen_center_X, screen_center_Y)
-player_manager.add_player(player5, "assets/player_icons/player_pfp_red.png", player_positions[4][0], player_positions[4][1])
+player_manager.add_player(player5)
 player6 = Player("assets/player_icons/player_pfp_yellow.png", player_positions[5][0], player_positions[5][1], screen_center_X, screen_center_Y)
-player_manager.add_player(player6, "assets/player_icons/player_pfp_yellow.png", player_positions[5][0], player_positions[5][1])
+player_manager.add_player(player6)
 
 #who is playing?
 def pn_reg():

@@ -1,5 +1,4 @@
 from LimList import *
-from Player import *
 
 class PlayerManager:
     def __init__(self):
@@ -13,6 +12,9 @@ class PlayerManager:
         self.risky_mode = None
         self.mode_set = False
     
+    def generate_cards(self):
+        pass
+
     def get_card(self):
         if (len(self.cards) - 1 == 0):
             self.end_game_req = True

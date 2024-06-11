@@ -10,12 +10,12 @@ class ColourCard(Card):
         self.colour = colour
         self.number = number
  
-class Switch(Card):
+class SwitchCard(Card):
     def __init__(self, path):
         self.path = path
         
 
-class Dicecard(Card):
+class DiceCard(Card):
     def __init__(self, path):
         super().__init__(path)
 

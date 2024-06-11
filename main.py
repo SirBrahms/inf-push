@@ -23,6 +23,30 @@ screen_center_Y = screen_height // 2
 def clear():
     screen.fill((0,0,0))
 
+def player_number_screen():
+    clear()
+    draw_text("Select Number of Players (2-6)", text_font, (255,255,255), 10, 0)
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_2:
+            player_manager.set_player_number(2)
+        if event.key == pygame.K_3:
+            player_manager.set_player_number(3)
+        if event.key == pygame.K_4:
+            player_manager.set_player_number(4)
+        if event.key == pygame.K_5:
+            player_manager.set_player_number(5)
+        if event.key == pygame.K_6:
+            player_manager.set_player_number(6)
+
+def player_mode_screen():
+    clear()
+    draw_text("Select Safe or Risky Game Mode (s or r)", text_font, (255,255,255), 10, 0)
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_s:
+            player_manager.set_gamemode(False)
+        if event.key == pygame.K_r:
+            player_manager.set_gamemode(True)
+
 #logo
 logo_done = False
 logo = pygame.image.load("assets/logo.png")
@@ -48,28 +72,10 @@ while running:
             exit()
         #set player number
         if logo_done and not player_manager.pn_set:
-            clear()
-            draw_text("Select Number of Players (2-6)", text_font, (255,255,255), 10, 0)
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_2:
-                    player_manager.set_player_number(2)
-                if event.key == pygame.K_3:
-                    player_manager.set_player_number(3)
-                if event.key == pygame.K_4:
-                    player_manager.set_player_number(4)
-                if event.key == pygame.K_5:
-                    player_manager.set_player_number(5)
-                if event.key == pygame.K_6:
-                    player_manager.set_player_number(6)
+            player_number_screen()
         #set gamemode            
         if player_manager.pn_set and not player_manager.mode_set:
-            clear()
-            draw_text("Select Safe or Risky Game Mode (s or r)", text_font, (255,255,255), 10, 0)
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_s:
-                    player_manager.set_gamemode(False)
-                if event.key == pygame.K_r:
-                    player_manager.set_gamemode(True)
+            player_mode_screen()
         
     #display logo
     if not logo_done:

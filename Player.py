@@ -1,4 +1,4 @@
-from main import *
+from bridge import player_manager
 from Card import *
 import pygame
 
@@ -26,7 +26,15 @@ class Player:
 
     def get_card_stack(self, stack_num):
         lst_temp = main.player_manager.stacks[stack_num].inner_list
-        c_card_temp = Card.Colourcard("colour", "green", "1") # temporary card to generate the type
+        c_card_temp = Card.ColourCard("aaa", "green", "1") # temporary card(s) to generate the type
+        d_card_temp = Card.DiceCard("aaa")
+        s_card_temp = Card.SwitchCard("aaaa")
+
+        for f in lst_temp:
+            if (type(f) == type(d_card_temp)):
+                side = roll_dice()
+                color = (s.split("die_")[1].split(".png")[0])
+                lst_temp = [lst_temp for x in lst_temp if x.path.find(color) == -1]
 
         for e in lst_temp:
             if (type(e) == type(c_card_temp)):
@@ -40,6 +48,9 @@ class Player:
                     self.cards_yellow.append(e)
                 elif (e.colour == "purple"):
                     self.cards_purple.append(e)
+            elif (type(e) == type(s_card_temp)):
+                player_manager.switch_direction()
+        
 
     def count_score(self):
         for e in self.cards_green:
@@ -52,6 +63,17 @@ class Player:
             self.score += e.value
         for e in self.cards_purple:
             self.score += e.value
+        for e in self.secured_cards:
+            self.score += e.value
 
-    def secure_color(self):
-        pass
+    def secure_color(self, color):
+        if (color == "red"):
+            self.secured_cards += self.cards_red
+        if (color == "green"):
+            self.secured_cards += self.cards_green
+        if (color == "blue"):
+            self.secured_cards += self.cards_blue
+        if (color == "yellow"):
+            self.secured_cards += self.cards_yellow
+        if (color == "purple"):
+            self.secured_cards += self.cards_purple

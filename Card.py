@@ -1,30 +1,24 @@
 import random
-#Oberklasse fur alle Karten
+ 
 class Card():
-    def __init__(self, Type):
-        self.Type = None
-#Spielkarte mit Farbe und Zahl 
-class Colourcard(Card):
-    def __init__(self, Type, colour, number):
-        super().__init__(Type)
-        self.Type = colourcard
+    def __init__(self, path):
+        self.path = None
+ 
+class ColourCard(Card):
+    def __init__(self, path, colour, number):
+        super().__init__(path)
         self.colour = colour
         self.number = number
-# Switchkarte nicht fertig
-class Switch(Card):
-    def __init__(self, Type):
-        self.Type = switchcard
-    #Variable in Playermanager mit True oder False
+ 
+class SwitchCard(Card):
+    def __init__(self, path):
+        self.path = path
         
-#Dice card with it's type and which colour is being deleted from the dice roll
-class Dicecard(Card):
-    def __init__(self, Type):
-        super().__init__(Type)
-        self.type = None
-        self.colour_delete = None
-    #dice roll
-    def dice_roll(self):
-        pass
+
+class DiceCard(Card):
+    def __init__(self, path):
+        super().__init__(path)
+
 
     
 

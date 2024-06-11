@@ -15,7 +15,7 @@ player_manager.generate_cards()
 scale = 1 #do not change unless absolutely necessary
 
 #screen setup
-screen_width = 1200*scale
+screen_width = 1200*scale #do not change!
 screen_height = 700*scale #do not change!
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Push")
@@ -199,7 +199,7 @@ def pn_reg():
         player5.set_is_playing(True)
     if player_manager.player_number == 6:
         player6.set_is_playing(True)
-    
+
     
 def table():
     player1.draw(screen)
@@ -213,6 +213,8 @@ def table():
     if player6.is_playing:
         player6.draw(screen)
     player_manager.draw_direction(screen, screen_height, 30, screen_center_Y)
+    
+    
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 if (__name__ == "__main__"):
@@ -307,6 +309,9 @@ if (__name__ == "__main__"):
             
             ### Drawing stuff goes here
             table()
+            """
+            current_player.stack_disp(screen)
+            """
             if (current_player.current_card != None):
                 screen.blit(current_player.current_card_disp, (current_player.current_card_disp_X, current_player.current_card_disp_Y)) 
             

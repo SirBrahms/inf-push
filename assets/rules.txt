@@ -1,0 +1,88 @@
+THE RULES
+Determine who will go first. During a player's turn, they have 
+two choices: push or bank. 
+
+PUSH 
+If a player chooses to push, they begin drawing cards from the 
+top of the draw pile. Cards are drawn one at a time and placed 
+in a column. Only three columns can be formed, and players do 
+not have to make three. They can make one or two. 
+As cards are drawn, they cannot be placed in a column that 
+already has a card with the same number or the same color. A 
+player can add as many cards to a single column as they want 
+without breaking that rule. 
+Players should keep in mind that while they are drawing cards 
+and creating columns, they are trying not to push too far. 
+Also, the player taking their turn might collect one of the 
+columns for potential points. The other columns will be 
+collected by opponents. At any time, a player can choose to 
+stop drawing cards. After stopping, it is time for players to 
+collect the columns and add cards to their bench. 
+
+BENCHING CARDS 
+When a player stops, that player chooses one column to collect 
+and add to their bench. Benched cards are arranged by color 
+face up in front of the player who collected them. Make sure 
+benched cards are staggered so the number can be seen. 
+
+Benched cards can potentially earn points for the player at 
+the end of the game, but they are not safe. 
+After the player taking their turn has benched a column of 
+cards, any remaining columns are collected by opponents. 
+Starting with the player left of the one taking their turn, 
+that player chooses one of the remaining columns. Continuing 
+left, the next player takes the third column if there is one. 
+These cards are also benched by the player who collected them. 
+Any columns remaining after play returns to the original player 
+are discarded. 
+The game begins with the benching process happening in clockwise 
+order. Throughout the game, switch cards might be drawn. When a 
+switch card is drawn, it is placed on its own pile near the draw 
+pile. Benching occurs according to the direction on the top most 
+switch card when the player has stopped drawing. 
+
+PUSH TOO FAR 
+If a player draws a card that cannot be used in one of the column 
+spaces, the player has pushed too far. That card is placed in the 
+discard pile. Now, the player must roll the die and discard all 
+cards of the color rolled from their bench. Banked cards are safe 
+and do not get discarded. When a player pushes too far, they do 
+not get to bench any cards. 
+The other players still collect columns as normal. Any columns 
+that are remaining when it gets back to the player who pushed too 
+far are discarded. 
+
+ROLL CARDS 
+When a player draws a roll card during their turn, it can be placed 
+in any column that does not have one already. If a roll card is 
+drawn, and it cannot be placed in a column, that player has pushed 
+too far. The roll card is discarded, and the player must roll the 
+die. During the benching phase, if a player collects a column that 
+has a roll card in it, they roll the die. Any cards that match the 
+color rolled are discarded (even cards that were just collected). 
+If a star is rolled, the player is safe and does not have to 
+discard any cards. The roll card is then discarded as well. 
+
+BANKING CARDS 
+On a player's turn, they can choose to bank cards rather than draw 
+and build columns. If a player chooses to bank, they pick one color 
+and remove all cards of that color from their bench. Colors can be 
+chosen multiple times during the game. Those cards are placed face 
+down in a pile called the bank. These cards are safe and cannot be 
+removed. The player will earn points for these cards at the end of 
+the game. 
+
+Play continues in a clockwise direction until all of the draw pile 
+cards are gone, and the final columns are collected or discarded. 
+At this point, it's time to tally up the score. 
+
+SCORING
+Players earn points for all of the cards in their bench and their 
+bank.
+
+WINNING
+The player with the most points wins the game.
+
+MORE DIFFICULTY
+For a greater challenge, discard all cards from the bench when a 
+star is rolled.

@@ -198,3 +198,8 @@ class Player:
         surface.blit(self.cards_secured_icon, (cards_secured_icon_X, cards_secured_icon_Y))
         draw_text(surface, str(self.score_secured), text_font, (255,255,255), cards_secured_icon_X+8, cards_secured_icon_Y+4)
         
+        if avatar_center_Y <= screen_height//2:
+            draw_text(surface, "Score: "+str(self.score), text_font, (255,255,255), avatar_center_X, avatar_center_Y)
+        else:
+            draw_text(surface, "Score: "+str(self.score), text_font, (255,255,255), avatar_center_X, avatar_center_Y+100)
+        

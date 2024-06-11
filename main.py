@@ -2,6 +2,7 @@ import pygame
 import random
 from sys import exit
 from Player_Manager import PlayerManager
+from Player import *
 pygame.init()
 pygame.font.init()
 pygame.mixer.init()

@@ -120,12 +120,12 @@ def roll_dice():
         return random_die_side
     
 player_positions = [
-    [screen_center_X, screen_center_Y-(screen_height//3)],
-    [screen_center_X-(screen_width//3), screen_center_Y-(screen_height//3)],
-    [screen_center_X+(screen_width//3), screen_center_Y-(screen_height//3)],
-    [screen_center_X, screen_center_Y+(screen_height//3)],
-    [screen_center_X-(screen_width//3), screen_center_Y+(screen_height//3)],
-    [screen_center_X+(screen_width//3), screen_center_Y+(screen_height//3)]
+    [screen_center_X, screen_center_Y-(screen_height//2.5)],
+    [screen_center_X-(screen_width//2.5), screen_center_Y-(screen_height//2.5)],
+    [screen_center_X+(screen_width//2.5), screen_center_Y-(screen_height//2.5)],
+    [screen_center_X, screen_center_Y+(screen_height//2.5)],
+    [screen_center_X-(screen_width//2.5), screen_center_Y+(screen_height//2.5)],
+    [screen_center_X+(screen_width//2.5), screen_center_Y+(screen_height//2.5)]
     ]
 player1 = Player("assets/player_icons/player_pfp_blue.png", player_positions[0][0], player_positions[0][1])
 player_manager.add_player(player1, "assets/player_icons/player_pfp_blue.png", player_positions[0][0], player_positions[0][1])

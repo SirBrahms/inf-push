@@ -126,6 +126,19 @@ player_positions = [
     [screen_center_X-(screen_width//4), screen_center_Y+(screen_height//4)],
     [screen_center_X+(screen_width//4), screen_center_Y+(screen_height//4)]
     ]
+player1 = Player("assets/player_icons/player_pfp_blue.png", player_positions[0][0], player_positions[0][1])
+player_manager.add_player(player1, "assets/player_icons/player_pfp_blue.png", player_positions[0][0], player_positions[0][1])
+player2 = Player("assets/player_icons/player_pfp_green.png", player_positions[1][0], player_positions[1][1])
+player_manager.add_player(player2, "assets/player_icons/player_pfp_green.png", player_positions[1][0], player_positions[1][1])
+player3 = Player("assets/player_icons/player_pfp_orange.png", player_positions[2][0], player_positions[2][1])
+player_manager.add_player(player3, "assets/player_icons/player_pfp_orange.png", player_positions[2][0], player_positions[2][1])
+player4 = Player("assets/player_icons/player_pfp_purple.png", player_positions[3][0], player_positions[3][1])
+player_manager.add_player(player4, "assets/player_icons/player_pfp_purple.png", player_positions[3][0], player_positions[3][1])
+player5 = Player("assets/player_icons/player_pfp_red.png", player_positions[4][0], player_positions[4][1])
+player_manager.add_player(player5, "assets/player_icons/player_pfp_red.png", player_positions[4][0], player_positions[4][1])
+player6 = Player("assets/player_icons/player_pfp_yellow.png", player_positions[5][0], player_positions[5][1])
+player_manager.add_player(player6, "assets/player_icons/player_pfp_yellow.png", player_positions[5][0], player_positions[5][1])
+
 
 deck=["assets/cards/blue1.png","assets/cards/red1.png","assets/cards/yellow1.png","assets/cards/green1.png","assets/cards/purple.png","assets/cards/blue2.png","assets/cards/red2.png","assets/cards/yellow2.png","assets/cards/purple2.png","assets/cards/green2.png","assets/cards/blue3.png","assets/cards/red3.png","assets/cards/yellow3.png","assets/cards/green3.png","assets/cards/purple3.png","assets/cards/blue4.png","assets/cards/red4.png","assets/cards/green4.png","assets/cards/purple4.png","assets/cards/yellow4.png","assets/cards/red5.png","assets/cards/blue5.png","assets/cards/purple5.png","assets/cards/green5.png","assets/cards/yellow5.png","assets/cards/red6.png","assets/cards/blue6.png","assets/cards/purple6.png","assets/cards/green6.png","assets/cards/yellow6.png""assets/cards/swap_direction.png","assets/cards/dice_card.png"]
 

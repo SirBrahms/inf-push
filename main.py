@@ -190,6 +190,7 @@ while running:
             player_mode_screen()
             if player_manager.pn_set and player_manager.mode_set:
                 clear()
+        
     if not logo_done:
         screen.blit(logo, (logo_X, logo_Y))
         pygame.display.flip()
@@ -198,7 +199,7 @@ while running:
         logo_done = True
         menu = True
         current_selection=0
-        pygame.mixer.music.play(-1)
+        #pygame.mixer.music.play(-1) commented out because it's driving me crazy
         
     while menu:
         title_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf",150*scale)
@@ -250,13 +251,19 @@ while running:
                                     menu = True
                                 
     if not menu:
-        if logo_done and player_manager.pn_set and player_manager.mode_set:
+        if logo_done and player_manager.pn_set and player_manager.mode_set and not setup_done == True:
             setup_done = True
     #----------------------------------------------------------------------------------------------
     #provisional drawing player's avatars
-    if setup_done:        
+    if setup_done:
+        clear()
+        current_player:Player = player_manager.players[player_manager.current_player] # current player object
+            
+        ### Drawing stuff goes here
         table()
-        
+        if (current_player.current_card != None):
+            screen.blit(current_player.current_card_disp, (screen_center_X, screen_center_Y)) # needs to be changed, I'll leave that up to the graphics people (thank you)
+            
         # highlight current player
         for i in range(len(player_manager.players)):
             if i == player_manager.current_player:
@@ -264,6 +271,86 @@ while running:
             else:
                 player_manager.players[i].turn = False
         
+        #### Input stuff
+        for event in pygame.event.get():
+            if (event.type == pygame.KEYDOWN):
+                
+                
+                if (event.key == pygame.K_RETURN and current_player.current_card == None):
+                    # pick up card
+                    current_player.get_card()
+                
+                if (current_player.current_card != None):
+                    # put card on stack
+                    if (event.key == pygame.K_1):
+                        player_manager.add_card_to_stack(current_player.current_card, 0)
+                        current_player.current_card = None
+                    elif (event.key == pygame.K_2):
+                        player_manager.add_card_to_stack(current_player.current_card, 1)
+                        current_player.current_card = None
+                    elif (event.key == pygame.K_3):
+                        player_manager.add_card_to_stack(current_player.current_card, 2)
+                        current_player.current_card = None
+                
+                ###### advance turn
+                # 1. player presses q
+                # 2. player selects stack
+                # 3. player gets stack
+                # 4. next player gets stack
+                # 5. last player gets stack
+                # 6. next player's turn
+                elif (event.key == pygame.K_q):
+                    if (player_manager.current_player != player_manager.player_number - 1):
+                        player_manager.current_player += 1
+                    else:
+                        player_manager.current_player = 0
+                    # print(player_manager.current_player)
+                    clear()
+    """
+    if setup_done:        
+        current_player:Player = player_manager.players[player_manager.current_player] # current player object
+            
+        ### Drawing stuff goes here
+        table()
+        if (current_player.current_card != None):
+            screen.blit(current_player.current_card_disp, (screen_center_X, screen_center_Y)) # needs to be changed, I'll leave that up to the graphics people (thank you)
+            
+        # highlight current player
+        for i in range(len(player_manager.players)):
+            if i == player_manager.current_player:
+                player_manager.players[i].turn = True
+            else:
+                player_manager.players[i].turn = False
+        
+        #### Input stuff
+        for event in pygame.event.get():
+            if (event.type == pygame.KEYDOWN):
+                
+                
+                if (event.key == pygame.K_RETURN and current_player.current_card == None):
+                    # pick up card
+                    current_player.get_card()
+                
+                if (current_player.current_card != None):
+                    # put card on stack
+                    if (event.key == pygame.K_1):
+                        player_manager.add_card_to_stack(current_player.current_card, 0)
+                        current_player.current_card = None
+                    elif (event.key == pygame.K_2):
+                        player_manager.add_card_to_stack(current_player.current_card, 1)
+                        current_player.current_card = None
+                    elif (event.key == pygame.K_3):
+                        player_manager.add_card_to_stack(current_player.current_card, 2)
+                        current_player.current_card = None
+                
+                # advance turn
+                elif (event.key == pygame.K_q):
+                    pass
+    
+    if (player_manager.end_game_req):
+        #### End the game
+        pass 
+    """
     #fps ceiling
     clock.tick(60)
     #----------------------------------------------------------------------------------------------

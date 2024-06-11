@@ -62,6 +62,17 @@ class Player:
             self.score += e.value
         for e in self.cards_purple:
             self.score += e.value
+        for e in self.secured_cards:
+            self.score += e.value
 
-    def secure_color(self):
-        pass
+    def secure_color(self, color):
+        if (color == "red"):
+            self.secured_cards += self.cards_red
+        if (color == "green"):
+            self.secured_cards += self.cards_green
+        if (color == "blue"):
+            self.secured_cards += self.cards_blue
+        if (color == "yellow"):
+            self.secured_cards += self.cards_yellow
+        if (color == "purple"):
+            self.secured_cards += self.cards_purple

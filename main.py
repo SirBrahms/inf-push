@@ -85,6 +85,8 @@ def die_sides_graphic():
     die_sides=["die_black.png","die_blue.png","die_green.png","die_purple.png","die_red.png","die_yellow.png"]
     random_die_side=pygame.image.load("assets/die_sides/"+random.choice(die_sides))
     screen.blit(random_die_side,(450*scale,200*scale))
+    dice_sound_effect=pygame.mixer.Sound("assets/music/dice_sound.mp3")
+    pygame.mixer.Sound.play(dice_sound_effect)
     
 def roll_dice():
     return_pressed=False
@@ -113,6 +115,8 @@ def roll_dice():
         die_sides=["die_black.png","die_blue.png","die_green.png","die_purple.png","die_red.png","die_yellow.png"]
         random_die_side=pygame.image.load("assets/die_sides/"+random.choice(die_sides))
         screen.blit(random_die_side,(450*scale,200*scale))
+        dice_sound_effect=pygame.mixer.Sound("assets/music/dice_sound.mp3")
+        pygame.mixer.Sound.play(dice_sound_effect)
         pygame.display.flip()
         pygame.time.delay(2000)
         return random_die_side
@@ -244,6 +248,7 @@ while running:
                                 if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
                                     rules_menu = False
                                     menu = True
+                                    roll_dice()
     if not menu:
         if logo_done and player_manager.pn_set and player_manager.mode_set:
             setup_done = True

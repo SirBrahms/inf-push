@@ -1,4 +1,5 @@
 from bridge import player_manager
+from main import roll_dice
 from Card import *
 import pygame
 
@@ -21,11 +22,11 @@ class Player:
         self.secured_cards = []
 
     def get_card_and_place(self, stack_num):
-        card = main.player_manager.get_card()
-        main.player_manager.add_card_to_stack(card, stack_num)
+        card = player_manager.get_card()
+        player_manager.add_card_to_stack(card, stack_num)
 
     def get_card_stack(self, stack_num):
-        lst_temp = main.player_manager.stacks[stack_num].inner_list
+        lst_temp = player_manager.stacks[stack_num].inner_list
         c_card_temp = Card.ColourCard("aaa", "green", "1") # temporary card(s) to generate the type
         d_card_temp = Card.DiceCard("aaa")
         s_card_temp = Card.SwitchCard("aaaa")
@@ -33,7 +34,7 @@ class Player:
         for f in lst_temp:
             if (type(f) == type(d_card_temp)):
                 side = roll_dice()
-                color = (s.split("die_")[1].split(".png")[0])
+                color = (side.split("die_")[1].split(".png")[0])
                 lst_temp = [lst_temp for x in lst_temp if x.path.find(color) == -1]
 
         for e in lst_temp:

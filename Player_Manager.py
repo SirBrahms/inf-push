@@ -1,6 +1,9 @@
 from LimList import *
 from bridge2 import deck
+from Card import *
 import pygame
+import random
+import re
 
 class PlayerManager:
     def __init__(self):
@@ -15,7 +18,22 @@ class PlayerManager:
         self.mode_set = False
     
     def generate_cards(self):
-        temp_list = deck[-2:]
+        temp_list = deck[:-2]
+        for e in temp_list:
+            num = int(re.findall(r"[\d].*(?=\.png)", e)[0]) #regex, do not touch
+            temporary_color_variable_because_python_is_fucking_stupid = re.sub(r"(?:.*\/(?:.*)\/)", "", e)
+            color = re.search(r".*(?=\d\.png)", temporary_color_variable_because_python_is_fucking_stupid)[0]
+            
+            for i in range(3):
+                self.cards.append(ColourCard(e, color, num))
+        
+        for i in range(18):
+            self.cards.append(DiceCard(deck[len(deck) - 1]))
+        
+        for i in range(12):
+            self.cards.append(SwitchCard(deck[len(deck) - 2]))
+        
+        random.shuffle(self.cards)
 
     def get_card(self):
         if (len(self.cards) - 1 == 0):

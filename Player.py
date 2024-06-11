@@ -3,7 +3,7 @@ from Card import *
 import pygame
 
 class Player:
-    def __init__(self,name, avatar_path, avatar_X, avatar_Y):
+    def __init__(self, avatar_path, avatar_X, avatar_Y):
         self.avatar_path = avatar_path
         self.avatar_X=avatar_X
         self.avatar_Y=avatar_Y

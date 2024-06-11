@@ -9,6 +9,7 @@ class Player:
         self.avatar_Y=avatar_Y
         self.score=0
         self.avatar = pygame.image.load(self.avatar_path)
+        self.is_playing = None
 
         # card lists
         self.cards_green = []

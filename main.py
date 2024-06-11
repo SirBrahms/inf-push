@@ -97,15 +97,10 @@ def roll_dice():
                 if event.key == pygame.K_RETURN:
                     return_pressed=True
     if return_pressed:
-        die_sides_graphic()
-        pygame.display.flip()
-        pygame.time.delay(100)
-        die_sides_graphic()
-        pygame.display.flip()
-        pygame.time.delay(100)
-        die_sides_graphic()
-        pygame.display.flip()
-        pygame.time.delay(100)
+        for i in range(3):
+            die_sides_graphic()
+            pygame.display.flip()
+            pygame.time.delay(100)
         die_sides_graphic()
         pygame.display.flip()
         pygame.time.delay(200)

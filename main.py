@@ -2,6 +2,7 @@ import pygame
 import random
 from sys import exit
 from bridge import player_manager
+from Player import *
 pygame.init()
 pygame.font.init()
 pygame.mixer.init()

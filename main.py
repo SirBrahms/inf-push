@@ -28,7 +28,7 @@ def clear():
 
 def player_number_screen():
     clear()
-    draw_text("Select Number of Players (2-6)", text_font, (255,255,255), 10, 0)
+    draw_text("Select Number of Players (enter 2-6)", text_font, (255,255,255), 10, 0)
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_2:
             player_manager.set_player_number(2)
@@ -43,7 +43,7 @@ def player_number_screen():
 
 def player_mode_screen():
     clear()
-    draw_text("Select Safe or Risky Game Mode (s or r)", text_font, (255,255,255), 10, 0)
+    draw_text("Select Safe or Risky Game Mode (enter s or r)", text_font, (255,255,255), 10, 0)
     if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_s:
             player_manager.set_gamemode(False)

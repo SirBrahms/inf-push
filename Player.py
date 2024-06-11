@@ -19,6 +19,8 @@ class Player:
         self.avatar_X=avatar_X
         self.avatar_Y=avatar_Y
         self.is_playing = False
+        self.turn = False
+        self.highlight = pygame.image.load("assets/turn_indicator.png")
 
         # card stuff
         self.cards_green = []
@@ -179,6 +181,9 @@ class Player:
         text_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", (self.stack_height//4)*3)
         
         surface.blit(self.avatar, (avatar_center_X, avatar_center_Y))
+        if self.turn:
+            self.highlight = pygame.transform.scale(self.highlight, (self.avatar_width*2, self.avatar_height*4))
+            surface.blit(self.highlight, (avatar_center_X, avatar_center_Y))
         
         surface.blit(self.cards_green_icon, (cards_green_icon_X, cards_green_icon_Y))
         draw_text(surface, str(self.score_green), text_font, (255,255,255), cards_green_icon_X+8, cards_green_icon_Y+4)

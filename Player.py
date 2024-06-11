@@ -3,13 +3,13 @@ from Card import *
 import pygame
 
 class Player:
-    def __init__(self,name, avatar_path, avatar_X, avatar_Y):
-        self.name=name
+    def __init__(self, avatar_path, avatar_X, avatar_Y):
         self.avatar_path = avatar_path
         self.avatar_X=avatar_X
         self.avatar_Y=avatar_Y
         self.score=0
         self.avatar = pygame.image.load(self.avatar_path)
+        self.is_playing = None
 
         # card lists
         self.cards_green = []

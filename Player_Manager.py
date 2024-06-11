@@ -1,4 +1,5 @@
 from LimList import *
+from Player import *
 
 class PlayerManager:
     def __init__(self):
@@ -21,6 +22,9 @@ class PlayerManager:
         self.player_number = player_number
         self.pn_set = True
     
+    def add_player(self, name, avatar_path, avatar_X, avatar_Y):
+        self.players.append([name, avatar_path, avatar_X, avatar_Y])
+        
     def set_gamemode(self, risky): #risky is a boolean
         self.risky_mode = risky
         self.mode_set = True

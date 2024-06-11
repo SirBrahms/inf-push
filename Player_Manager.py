@@ -8,6 +8,7 @@ import re
 class PlayerManager:
     def __init__(self):
         self.cards = []
+        self.generate_cards()
         self.players = [] #[name, av_path, av_x, av_y]
         self.player_number = 0
         self.pn_set = False

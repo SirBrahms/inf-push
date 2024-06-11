@@ -27,19 +27,62 @@ def clear():
     screen.fill((0,0,0))
 
 def player_number_screen():
-    clear()
-    draw_text("Select Number of Players (enter 2-6)", text_font, (255,255,255), 10, 0)
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_2:
-            player_manager.set_player_number(2)
-        if event.key == pygame.K_3:
-            player_manager.set_player_number(3)
-        if event.key == pygame.K_4:
-            player_manager.set_player_number(4)
-        if event.key == pygame.K_5:
-            player_manager.set_player_number(5)
-        if event.key == pygame.K_6:
-            player_manager.set_player_number(6)
+    player_number_screen = True
+    player_background = pygame.image.load("assets/backgrounds/select_players_background.png")
+    player_background = pygame.transform.scale(player_background, (screen_width, screen_height))
+    current_selection = 0
+    while player_number_screen:
+        screen.blit(player_background,(0,0))
+        draw_text("Select Number of Players", text_font, (255,255,255), 320, 10)
+        if current_selection == 0:
+            draw_text("2", title_font, (255,255,0),150,260)
+            draw_text("3", title_font, (255,255,255),350,260)
+            draw_text("4", title_font, (255,255,255),550,260)
+            draw_text("5", title_font, (255,255,255),750,260)
+            draw_text("6", title_font, (255,255,255),950,260)
+            
+        elif current_selection == 1:
+            draw_text("2", title_font, (255,255,255),150,260)
+            draw_text("3", title_font, (255,255,0),350,260)
+            draw_text("4", title_font, (255,255,255),550,260)
+            draw_text("5", title_font, (255,255,255),750,260)
+            draw_text("6", title_font, (255,255,255),950,260)
+           
+        elif current_selection == 2:
+            draw_text("2", title_font, (255,255,255),150,260)
+            draw_text("3", title_font, (255,255,255),350,260)
+            draw_text("4", title_font, (255,255,0),550,260)
+            draw_text("5", title_font, (255,255,255),750,260)
+            draw_text("6", title_font, (255,255,255),950,260)
+            
+        elif current_selection == 3:
+            draw_text("2", title_font, (255,255,255),150,260)
+            draw_text("3", title_font, (255,255,255),350,260)
+            draw_text("4", title_font, (255,255,255),550,260)
+            draw_text("5", title_font, (255,255,0),750,260)
+            draw_text("6", title_font, (255,255,255),950,260)
+            
+        elif current_selection == 4:
+            draw_text("2", title_font, (255,255,255),150,260)
+            draw_text("3", title_font, (255,255,255),350,260)
+            draw_text("4", title_font, (255,255,255),550,260)
+            draw_text("5", title_font, (255,255,255),750,260)
+            draw_text("6", title_font, (255,255,0),950,260)
+            
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT and current_selection != 4:
+                    current_selection += 1
+                if event.key == pygame.K_LEFT and current_selection != 0:
+                    current_selection -=1
+                if event.key == pygame.K_RETURN:
+                    player_number_screen = False
+                    player_manager.set_player_number(current_selection + 2)
         pn_reg()
 
 def player_mode_screen():

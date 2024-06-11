@@ -11,6 +11,7 @@ class PlayerManager:
         self.generate_cards()
         self.players = [] #[name, av_path, av_x, av_y]
         self.player_number = 0
+        self.current_player = 0
         self.pn_set = False
         self.stacks = [LimList([]), LimList([]), LimList([])]
         self.direction = 1 # 1 = right / -1 = left

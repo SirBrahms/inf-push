@@ -293,13 +293,15 @@ if (__name__ == "__main__"):
                             if (event.key == pygame.K_1):
                                 player_manager.players[player_manager.current_player].get_card_stack(0, roll_dice)
                                 player_manager.amt_of_selecting_players += 1
+                                player_manager.next_player()
                             elif (event.key == pygame.K_2):
                                 player_manager.players[player_manager.current_player].get_card_stack(1, roll_dice)
                                 player_manager.amt_of_selecting_players += 1
+                                player_manager.next_player()
                             elif (event.key == pygame.K_3):
                                 player_manager.players[player_manager.current_player].get_card_stack(2, roll_dice)
                                 player_manager.amt_of_selecting_players += 1
-                            player_manager.next_player()
+                                player_manager.next_player()
                             clear()
                         else: # every player has selected their stack
                             player_manager.current_player = player_manager.old_current_player

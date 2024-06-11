@@ -82,8 +82,7 @@ class Player:
         return self.current_card
 
     # gets an enitre stack of cards (selected by the stack num), divides the ColourCards into their respective lists and does the actions of all the special cards
-    def get_card_stack(self, stack_num:int):
-        from main import roll_dice
+    def get_card_stack(self, stack_num:int, rfunc):
         lst_temp = player_manager.stacks[stack_num].inner_list
         c_card_temp = ColourCard("aaa", "green", "1") # temporary card(s) to generate the type
         d_card_temp = DiceCard("aaa")
@@ -91,7 +90,7 @@ class Player:
 
         for f in lst_temp:
             if (type(f) == type(d_card_temp)):
-                side = roll_dice()
+                side = rfunc()
                 color = (side.split("die_")[1].split(".png")[0])
                 lst_temp = [lst_temp for x in lst_temp if x.path.find(color) == -1]
 
@@ -124,17 +123,17 @@ class Player:
         
         # count
         for e in self.cards_green:
-            self.score_green += e.value
+            self.score_green += e.number
         for e in self.cards_red:
-            self.score_red += e.value
+            self.score_red += e.number
         for e in self.cards_blue:
-            self.score_blue += e.value
+            self.score_blue += e.number
         for e in self.cards_yellow:
-            self.score_yellow += e.value
+            self.score_yellow += e.number
         for e in self.cards_purple:
-            self.score_purple += e.value
+            self.score_purple += e.number
         for e in self.secured_cards:
-            self.score_secured += e.value
+            self.score_secured += e.number
     
     # counts the final score by adding up the value of each card
     def count_score(self):

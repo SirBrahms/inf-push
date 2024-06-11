@@ -18,6 +18,10 @@ class PlayerManager:
         self.end_game_req = False
         self.risky_mode = None
         self.mode_set = False
+        
+        self.stack_selection = False
+        self.amt_of_selecting_players = 0
+        self.old_current_player = 0
     
     def generate_cards(self):
         temp_list = deck[:-2]
@@ -36,6 +40,15 @@ class PlayerManager:
             self.cards.append(SwitchCard(deck[len(deck) - 2]))
         
         random.shuffle(self.cards)
+        
+    def next_player(self):
+        next = self.current_player + (1 * self.direction)
+        if (next == self.player_number):
+            next = 0
+        elif (next < 0):
+            next = self.player_number - 1
+            
+        self.current_player = next
     
     def get_card(self):
         if (len(self.cards) - 1 == 0):

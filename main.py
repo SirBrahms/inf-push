@@ -171,142 +171,171 @@ def table():
     player_manager.draw_direction(screen, screen_height, 30, screen_center_Y)
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
-running = True
-setup_done = False
-while running:
-    pygame.display.flip()
-    #event handler
-    for event in pygame.event.get():
-        #quit event
-        if event.type == pygame.QUIT:
-            running = False
-            pygame.quit()
-            exit()
-        #set player number
-        if logo_done and not player_manager.pn_set:
-            player_number_screen()
-        #set gamemode            
-        if player_manager.pn_set and not player_manager.mode_set:
-            player_mode_screen()
-            if player_manager.pn_set and player_manager.mode_set:
-                clear()
-        
-    if not logo_done:
-        screen.blit(logo, (logo_X, logo_Y))
+if (__name__ == "__main__"):
+    
+    running = True
+    setup_done = False
+    while running:
         pygame.display.flip()
-        pygame.time.delay(500) #temporarily shortened for testing
-        clear()
-        logo_done = True
-        menu = True
-        current_selection=0
-        #pygame.mixer.music.play(-1) commented out because it's driving me crazy
-        
-    while menu:
-        title_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf",150*scale)
-        screen.blit(menu_background, (0, 0))
-        draw_text("PUSH", title_font, (255, 255, 255), 50, 0*scale)
-        draw_text("The Game", text_font, (255, 255, 255), 50,130*scale)
-        if current_selection == 0:
-            draw_text("Start Game", text_font, (255, 255, 0), 50, 280*scale)
-            draw_text("Rules", text_font, (255, 255, 255), 50, 340*scale)
-            pygame.display.flip()
-        else:
-            draw_text("Start Game", text_font, (255, 255, 255), 50, 280)
-            draw_text("Rules", text_font, (255, 255, 0), 50, 340*scale)
-            pygame.display.flip()
-                
-
+        #event handler
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_DOWN:
-                    if current_selection == 0:
-                        current_selection +=1                                          
-                if event.key == pygame.K_UP:
-                    if current_selection == 1:
-                        current_selection -= 1
-                if event.key == pygame.K_RETURN:
-                    menu=False
-                if event.key == pygame.K_RETURN and current_selection == 1:
-                    rules_menu = True
-                    scroll_offset = 0
+        #quit event
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+                exit()
+            #set player number
+            if logo_done and not player_manager.pn_set:
+                player_number_screen()
+            #set gamemode            
+            if player_manager.pn_set and not player_manager.mode_set:
+                player_mode_screen()
+                if player_manager.pn_set and player_manager.mode_set:
                     clear()
-                    while rules_menu:
-                        screen.blit(rules_background, (0, 0))
-                        y = 50 - scroll_offset
-                        for line in rules:
-                            draw_text(line.strip(), rule_font, (255, 255, 255), 50, y)
-                            y += 30
-
-                        pygame.display.flip()
-                        for event in pygame.event.get():
-                            if event.type == pygame.KEYDOWN:
-                                if event.key == pygame.K_DOWN:
-                                    scroll_offset += 30
-                                if event.key == pygame.K_UP:
-                                    scroll_offset -= 30
-                                    if scroll_offset < 0:
-                                        scroll_offset = 0
-                                if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
-                                    rules_menu = False
-                                    menu = True
-                                
-    if not menu:
-        if logo_done and player_manager.pn_set and player_manager.mode_set and not setup_done == True:
-            setup_done = True
-    #----------------------------------------------------------------------------------------------
-    #provisional drawing player's avatars
-    if setup_done:
-        clear()
-        current_player:Player = player_manager.players[player_manager.current_player] # current player object
-            
-        ### Drawing stuff goes here
-        table()
-        if (current_player.current_card != None):
-            screen.blit(current_player.current_card_disp, (screen_center_X, screen_center_Y)) # needs to be changed, I'll leave that up to the graphics people (thank you)
-            
-        # highlight current player
-        for i in range(len(player_manager.players)):
-            if i == player_manager.current_player:
-                player_manager.players[i].turn = True
+        
+        if not logo_done:
+            screen.blit(logo, (logo_X, logo_Y))
+            pygame.display.flip()
+            pygame.time.delay(500) #temporarily shortened for testing
+            clear()
+            logo_done = True
+            menu = True
+            current_selection=0
+            #pygame.mixer.music.play(-1) commented out because it's driving me crazy
+        
+        while menu:
+            title_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf",150*scale)
+            screen.blit(menu_background, (0, 0))
+            draw_text("PUSH", title_font, (255, 255, 255), 50, 0*scale)
+            draw_text("The Game", text_font, (255, 255, 255), 50,130*scale)
+            if current_selection == 0:
+                draw_text("Start Game", text_font, (255, 255, 0), 50, 280*scale)
+                draw_text("Rules", text_font, (255, 255, 255), 50, 340*scale)
+                pygame.display.flip()
             else:
-                player_manager.players[i].turn = False
+                draw_text("Start Game", text_font, (255, 255, 255), 50, 280)
+                draw_text("Rules", text_font, (255, 255, 0), 50, 340*scale)
+                pygame.display.flip()
+                
+
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_DOWN:
+                        if current_selection == 0:
+                            current_selection +=1                                          
+                    if event.key == pygame.K_UP:
+                        if current_selection == 1:
+                            current_selection -= 1
+                    if event.key == pygame.K_RETURN:
+                        menu=False
+                    if event.key == pygame.K_RETURN and current_selection == 1:
+                        rules_menu = True
+                        scroll_offset = 0
+                        clear()
+                        while rules_menu:
+                            screen.blit(rules_background, (0, 0))
+                            y = 50 - scroll_offset
+                            for line in rules:
+                                draw_text(line.strip(), rule_font, (255, 255, 255), 50, y)
+                                y += 30
+
+                            pygame.display.flip()
+                            for event in pygame.event.get():
+                                if event.type == pygame.KEYDOWN:
+                                    if event.key == pygame.K_DOWN:
+                                        scroll_offset += 30
+                                    if event.key == pygame.K_UP:
+                                        scroll_offset -= 30
+                                        if scroll_offset < 0:
+                                            scroll_offset = 0
+                                    if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
+                                        rules_menu = False
+                                        menu = True
+                                
+        if not menu:
+            if logo_done and player_manager.pn_set and player_manager.mode_set and not setup_done == True:
+                setup_done = True
+        #----------------------------------------------------------------------------------------------
+        #provisional drawing player's avatars
+        if setup_done:
+            clear()
+            current_player:Player = player_manager.players[player_manager.current_player] # current player object
+            
+            ### Drawing stuff goes here
+            table()
+            if (current_player.current_card != None):
+                screen.blit(current_player.current_card_disp, (screen_center_X, screen_center_Y)) # needs to be changed, I'll leave that up to the graphics people (thank you)
+            
+            # highlight current player
+            for i in range(len(player_manager.players)):
+                if i == player_manager.current_player:
+                    player_manager.players[i].turn = True
+                else:
+                    player_manager.players[i].turn = False
         
-        #### Input stuff
-        for event in pygame.event.get():
-            if (event.type == pygame.KEYDOWN):
+            #### Input stuff
+            for event in pygame.event.get():
+                if (event.type == pygame.KEYDOWN):
                 
+                    # 1. player presses q
+                    # 2. player selects stack
+                    # 3. player gets stack
+                    # 4. next player gets stack
+                    # 5. last player gets stack
+                    # 6. next player's turn
                 
-                if (event.key == pygame.K_RETURN and current_player.current_card == None):
-                    # pick up card
-                    current_player.get_card()
-                ###### advance turn
-                # 1. player presses q
-                # 2. player selects stack
-                # 3. player gets stack
-                # 4. next player gets stack
-                # 5. last player gets stack
-                # 6. next player's turn
-                if (event.key == pygame.K_q and current_player.current_card == None):
-                    if (player_manager.current_player != player_manager.player_number - 1):
-                        player_manager.current_player += 1
+                    if (player_manager.stack_selection):
+                        player_manager.old_current_player = player_manager.current_player
+                        print(player_manager.amt_of_selecting_players)
+                        if (player_manager.amt_of_selecting_players != 3): # not every possible player has selected their stack
+                            print("here")
+                            if (event.key == pygame.K_1):
+                                player_manager.players[player_manager.current_player].get_card_stack(0, roll_dice)
+                                player_manager.amt_of_selecting_players += 1
+                            elif (event.key == pygame.K_2):
+                                player_manager.players[player_manager.current_player].get_card_stack(1, roll_dice)
+                                player_manager.amt_of_selecting_players += 1
+                            elif (event.key == pygame.K_3):
+                                player_manager.players[player_manager.current_player].get_card_stack(2, roll_dice)
+                                player_manager.amt_of_selecting_players += 1
+                            player_manager.next_player()
+                            clear()
+                        else: # every player has selected their stack
+                            player_manager.current_player = player_manager.old_current_player
+                            # step 6
+                            if (player_manager.current_player != player_manager.player_number - 1):
+                                player_manager.current_player += 1 * player_manager.direction
+                            else:
+                                player_manager.current_player = 0
+                            # print(player_manager.current_player)
+                            clear()
+                            print("here 2 (bad)")
+                            player_manager.stack_selection = False
+                            player_manager.amt_of_selecting_players = 0
                     else:
-                        player_manager.current_player = 0
-                    # print(player_manager.current_player)
-                    clear()
+                        if (event.key == pygame.K_RETURN and current_player.current_card == None):
+                            # pick up card
+                            current_player.get_card()
+                    
+                        ###### advance turn
+                        if (event.key == pygame.K_q and current_player.current_card == None):
+                            player_manager.stack_selection = True
                 
-                if (current_player.current_card != None):
-                    # put card on stack
-                    if (event.key == pygame.K_1):
-                        player_manager.add_card_to_stack(current_player.current_card, 0)
-                        current_player.current_card = None
-                    elif (event.key == pygame.K_2):
-                        player_manager.add_card_to_stack(current_player.current_card, 1)
-                        current_player.current_card = None
-                    elif (event.key == pygame.K_3):
-                        player_manager.add_card_to_stack(current_player.current_card, 2)
-                        current_player.current_card = None
+                        if (current_player.current_card != None):
+                            # put card on stack
+                            if (event.key == pygame.K_1):
+                                player_manager.add_card_to_stack(current_player.current_card, 0)
+                                current_player.current_card = None
+                            elif (event.key == pygame.K_2):
+                                player_manager.add_card_to_stack(current_player.current_card, 1)
+                                current_player.current_card = None
+                            elif (event.key == pygame.K_3):
+                                player_manager.add_card_to_stack(current_player.current_card, 2)
+                                current_player.current_card = None
                 
-                
+        #fps ceiling
+        clock.tick(60)
+        #----------------------------------------------------------------------------------------------            
     """
     if setup_done:        
         current_player:Player = player_manager.players[player_manager.current_player] # current player object
@@ -352,9 +381,7 @@ while running:
         #### End the game
         pass 
     """
-    #fps ceiling
-    clock.tick(60)
-    #----------------------------------------------------------------------------------------------
+        
 #quitting
 pygame.time.wait(4000)
 pygame.quit()

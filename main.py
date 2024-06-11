@@ -86,13 +86,37 @@ def player_number_screen():
         pn_reg()
 
 def player_mode_screen():
-    clear()
-    draw_text("Select Safe or Risky Game Mode (enter s or r)", text_font, (255,255,255), 10, 0)
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_s:
-            player_manager.set_gamemode(False)
-        if event.key == pygame.K_r:
-            player_manager.set_gamemode(True)
+    game_mode_screen = True
+    game_mode_background = pygame.image.load("assets/backgrounds/game_mode_background.png")
+    game_mode_background = pygame.transform.scale(game_mode_background, (screen_width, screen_height))
+    current_selection = 0
+    while game_mode_screen:
+        screen.blit(game_mode_background, (0,0))
+        draw_text("Select Game Mode", text_font, (255,255,255), 400, 10)
+        if current_selection == 0:
+            draw_text("safe", title_font, (255,255,0), 150, 250)
+            draw_text("risky", title_font, (255,255,255), 750, 250)
+        elif current_selection == 1:
+            draw_text("safe", title_font, (255,255,255), 150, 250)
+            draw_text("risky", title_font, (255,255,0), 750, 250)
+        pygame.display.flip()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT and current_selection != 1:
+                    current_selection += 1
+                if event.key == pygame.K_LEFT and current_selection != 0:
+                    current_selection -=1
+                if event.key == pygame.K_RETURN:
+                    game_mode_screen = False
+                    if current_selection == 0:
+                        player_manager.set_gamemode(False)
+                    else:
+                        player_manager.set_gamemode(True)
+
 
 #logo
 logo_done = False

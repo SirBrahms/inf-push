@@ -9,7 +9,7 @@ class PlayerManager:
     def __init__(self):
         self.cards = []
         self.generate_cards()
-        self.players = [] #[name, av_path, av_x, av_y]
+        self.players = []
         self.player_number = 0
         self.current_player = 0
         self.pn_set = False
@@ -46,8 +46,8 @@ class PlayerManager:
         self.player_number = player_number
         self.pn_set = True
     
-    def add_player(self, name, avatar_path, avatar_X, avatar_Y):
-        self.players.append([name, avatar_path, avatar_X, avatar_Y])
+    def add_player(self, player):
+        self.players.append(player)
         
     def set_gamemode(self, risky): #risky is a boolean
         self.risky_mode = risky

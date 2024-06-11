@@ -5,6 +5,7 @@ import pygame
 screen_height = 700 #do not change!
 
 class Player:
+    # constructor
     def __init__(self, avatar_path, avatar_X, avatar_Y, stackset_X, stackset_Y):
         self.avatar_path = avatar_path
         self.avatar = pygame.image.load(self.avatar_path)
@@ -52,12 +53,13 @@ class Player:
         self.score=0
         
         
-
-    def get_card_and_place(self, stack_num):
+    # gets the top card from the deck and places it onto the stack with the passed stack_num (int)
+    def get_card_and_place(self, stack_num:int):
         card = player_manager.get_card()
         player_manager.add_card_to_stack(card, stack_num)
 
-    def get_card_stack(self, stack_num):
+    # gets an enitre stack of cards (selected by the stack num), divides the ColourCards into their respective lists and does the actions of all the special cards
+    def get_card_stack(self, stack_num:int):
         from main import roll_dice
         lst_temp = player_manager.stacks[stack_num].inner_list
         c_card_temp = ColourCard("aaa", "green", "1") # temporary card(s) to generate the type
@@ -85,7 +87,7 @@ class Player:
             elif (type(e) == type(s_card_temp)):
                 player_manager.switch_direction()
         
-
+    # counts the final score by adding up the value of each card
     def count_score(self):
         for e in self.cards_green:
             self.score += e.value
@@ -100,21 +102,29 @@ class Player:
         for e in self.secured_cards:
             self.score += e.value
 
+    # moves an entire color into the secured_cards list
     def secure_color(self, color):
         if (color == "red"):
             self.secured_cards += self.cards_red
+            self.cards_red.clear()
         if (color == "green"):
             self.secured_cards += self.cards_green
+            self.cards_green.clear()
         if (color == "blue"):
             self.secured_cards += self.cards_blue
+            self.cards_blue.clear()
         if (color == "yellow"):
             self.secured_cards += self.cards_yellow
+            self.cards_yellow.clear()
         if (color == "purple"):
             self.secured_cards += self.cards_purple
+            self.cards_purple.clear()
     
+    # sets whether the player is playing
     def set_is_playing(self, is_playing):
         self.is_playing = is_playing
-            
+    
+    # draws the player to the screen (tysm Michael)    
     def draw(self, surface):
         self.stack_width = self.cards_green_icon.get_width()
         self.stack_height = self.cards_green_icon.get_height() #only one stack because they are all the same size

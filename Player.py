@@ -176,25 +176,25 @@ class Player:
         cards_secured_icon_X = self.stackset_X + (self.stack_width//2)
         cards_secured_icon_Y = self.stackset_Y + self.stack_height//2
         
-        text_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", self.stack_height)
+        text_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", (self.stack_height//4)*3)
         
         surface.blit(self.avatar, (avatar_center_X, avatar_center_Y))
         
         surface.blit(self.cards_green_icon, (cards_green_icon_X, cards_green_icon_Y))
-        draw_text(surface, str(self.score_green), text_font, (255,255,255), cards_green_icon_X, cards_green_icon_Y)
+        draw_text(surface, str(self.score_green), text_font, (255,255,255), cards_green_icon_X+8, cards_green_icon_Y+4)
         
         surface.blit(self.cards_red_icon, (cards_red_icon_X, cards_red_icon_Y))
-        draw_text(surface, str(self.score_red), text_font, (255,255,255), cards_red_icon_X, cards_red_icon_Y)
+        draw_text(surface, str(self.score_red), text_font, (255,255,255), cards_red_icon_X+8, cards_red_icon_Y+4)
         
         surface.blit(self.cards_blue_icon, (cards_blue_icon_X, cards_blue_icon_Y))
-        draw_text(surface, str(self.score_blue), text_font, (255,255,255), cards_blue_icon_X, cards_blue_icon_Y)
+        draw_text(surface, str(self.score_blue), text_font, (255,255,255), cards_blue_icon_X+8, cards_blue_icon_Y+4)
         
         surface.blit(self.cards_yellow_icon, (cards_yellow_icon_X, cards_yellow_icon_Y))
-        draw_text(surface, str(self.score_yellow), text_font, (255,255,255), cards_yellow_icon_X, cards_yellow_icon_Y)
+        draw_text(surface, str(self.score_yellow), text_font, (255,255,255), cards_yellow_icon_X+8, cards_yellow_icon_Y+4)
         
         surface.blit(self.cards_purple_icon, (cards_purple_icon_X, cards_purple_icon_Y))
-        draw_text(surface, str(self.score_purple), text_font, (255,255,255), cards_purple_icon_X, cards_purple_icon_Y)
+        draw_text(surface, str(self.score_purple), text_font, (255,255,255), cards_purple_icon_X+8, cards_purple_icon_Y+4)
         
         surface.blit(self.cards_secured_icon, (cards_secured_icon_X, cards_secured_icon_Y))
-        draw_text(surface, str(self.score_secured), text_font, (255,255,255), cards_secured_icon_X, cards_secured_icon_Y)
+        draw_text(surface, str(self.score_secured), text_font, (255,255,255), cards_secured_icon_X+8, cards_secured_icon_Y+4)
         

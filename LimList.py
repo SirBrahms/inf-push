@@ -3,7 +3,7 @@ class LimList():
         self.inner_list = lst
     
     def check_new_element(self, e):
-        if (self.inner_list.contains(e)):
+        if (e in self.inner_list):
             raise ValueError("Same Card Added Twice")
         else:
             self.inner_list.append(e)

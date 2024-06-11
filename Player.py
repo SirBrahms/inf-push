@@ -23,6 +23,9 @@ class Player:
         self.highlight = pygame.image.load("assets/turn_indicator.png")
 
         # card stuff
+        self.current_card = None
+        self.current_card_disp = None # current card display object (pygame.image.load)
+        
         self.cards_green = []
         self.score_green = 0
         self.cards_green_icon = pygame.image.load("assets/stacks/stack_green.png")
@@ -66,10 +69,17 @@ class Player:
         self.score=0
         
         
-    # gets the top card from the deck and places it onto the stack with the passed stack_num (int)
+    # gets the top card from the deck and places it onto the stack with the passed stack_num [DO NOT USE!!!!!!!!!!!!]
     def get_card_and_place(self, stack_num:int):
         card = player_manager.get_card()
         player_manager.add_card_to_stack(card, stack_num)
+    
+    # get the top card and display it on the screen
+    def get_card(self):
+        self.current_card = player_manager.get_card()
+        self.current_card_disp = pygame.image.load(self.current_card.path)
+
+        return self.current_card
 
     # gets an enitre stack of cards (selected by the stack num), divides the ColourCards into their respective lists and does the actions of all the special cards
     def get_card_stack(self, stack_num:int):

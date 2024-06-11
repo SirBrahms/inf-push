@@ -117,7 +117,7 @@ def roll_dice():
         pygame.display.flip()
         pygame.time.delay(2000)
         return random_die_side
-
+#-----------------------------------------------------------------------------------------------------------------------------------------------
 running = True
 while running:
     pygame.display.flip()

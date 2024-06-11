@@ -248,7 +248,7 @@ while running:
                                 if event.key == pygame.K_RETURN or event.key == pygame.K_ESCAPE:
                                     rules_menu = False
                                     menu = True
-                                    roll_dice()
+                                
     if not menu:
         if logo_done and player_manager.pn_set and player_manager.mode_set:
             setup_done = True

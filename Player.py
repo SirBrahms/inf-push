@@ -1,4 +1,4 @@
-from main import player_manager
+from bridge import player_manager
 from Card import *
 import pygame
 

@@ -1,14 +1,14 @@
 import pygame
 import random
 from sys import exit
-from Player_Manager import PlayerManager
+from bridge import player_manager
 pygame.init()
 pygame.font.init()
 pygame.mixer.init()
 
 clock = pygame.time.Clock()
-player_manager = PlayerManager()
-
+#player_manager = PlayerManager()
+player_manager.generate_cards()
 
 
 scale = 1 #do not change unless absolutely necessary

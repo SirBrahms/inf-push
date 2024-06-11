@@ -110,7 +110,9 @@ def roll_dice():
         die_sides_graphic()
         pygame.display.flip()
         pygame.time.delay(900)
-        die_sides_graphic()
+        die_sides=["die_black.png","die_blue.png","die_green.png","die_purple.png","die_red.png","die_yellow.png"]
+        random_die_side=pygame.image.load("assets/die_sides/"+random.choice(die_sides))
+        screen.blit(random_die_side,(450*scale,200*scale))
         pygame.display.flip()
         pygame.time.delay(2000)
         return random_die_side

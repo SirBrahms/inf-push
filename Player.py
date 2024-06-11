@@ -2,23 +2,56 @@ from bridge import player_manager
 from Card import *
 import pygame
 
+screen_height = 700 #do not change!
+
 class Player:
-    def __init__(self, avatar_path, avatar_X, avatar_Y):
+    def __init__(self, avatar_path, avatar_X, avatar_Y, stackset_X, stackset_Y):
         self.avatar_path = avatar_path
+        self.avatar = pygame.image.load(self.avatar_path)
+        self.avatar = pygame.transform.scale(self.avatar, (screen_height*0.2, screen_height*0.2))
+        self.avatar_width = self.avatar.get_width()
+        self.avatar_height = self.avatar.get_height()
         self.avatar_X=avatar_X
         self.avatar_Y=avatar_Y
-        self.score=0
-        self.avatar = pygame.image.load(self.avatar_path)
         self.is_playing = False
 
         # card lists
         self.cards_green = []
+        self.cards_green_icon = pygame.image.load("assets/stacks/stack_green.png")
+        
         self.cards_red = []
+        self.cards_red_icon = pygame.image.load("assets/stacks/stack_red.png")
+        
         self.cards_blue = []
+        self.cards_blue_icon = pygame.image.load("assets/stacks/stack_blue.png")
+        
         self.cards_yellow = []
+        self.cards_yellow_icon = pygame.image.load("assets/stacks/stack_yellow.png")
+        
         self.cards_purple = []
+        self.cards_purple_icon = pygame.image.load("assets/stacks/stack_purple.png")
 
         self.secured_cards = []
+        self.cards_secured_icon = pygame.image.load("assets/stacks/stack_secured.png")
+        
+        self.cards_icon_scale = screen_height*0.06
+        self.cards_green_icon = pygame.transform.scale(self.cards_green_icon, (self.cards_icon_scale, self.cards_icon_scale)) #actual scaling is temp
+        self.cards_red_icon = pygame.transform.scale(self.cards_red_icon, (self.cards_icon_scale, self.cards_icon_scale))
+        self.cards_blue_icon = pygame.transform.scale(self.cards_blue_icon, (self.cards_icon_scale, self.cards_icon_scale))
+        self.cards_yellow_icon = pygame.transform.scale(self.cards_yellow_icon, (self.cards_icon_scale, self.cards_icon_scale))
+        self.cards_purple_icon = pygame.transform.scale(self.cards_purple_icon, (self.cards_icon_scale, self.cards_icon_scale))
+        self.cards_secured_icon = pygame.transform.scale(self.cards_secured_icon, (self.cards_icon_scale, self.cards_icon_scale))
+        self.stack_width = self.cards_green_icon.get_width()
+        self.stack_height = self.cards_green_icon.get_height() #only one stack because they are all the same size
+        
+        self.stackset_X = self.avatar_X
+        if self.avatar_Y <= screen_height//2:
+            self.stackset_Y = self.avatar_Y + self.stack_width*1.3
+        else:
+            self.stackset_Y = self.avatar_Y - self.stack_width*2.4
+        self.score=0
+        
+        
 
     def get_card_and_place(self, stack_num):
         card = main.player_manager.get_card()
@@ -81,11 +114,37 @@ class Player:
     def set_is_playing(self, is_playing):
         self.is_playing = is_playing
             
-    def draw(self, surface, screen_height):
-        image = pygame.image.load(self.avatar_path)
-        image = pygame.transform.scale(image, (screen_height*0.2, screen_height*0.2))
-        width = image.get_width()
-        height = image.get_height()
-        center_X = self.avatar_X - width//2
-        center_Y = self.avatar_Y - height//2
-        surface.blit(image, (center_X, center_Y))
+    def draw(self, surface):
+        self.stack_width = self.cards_green_icon.get_width()
+        self.stack_height = self.cards_green_icon.get_height() #only one stack because they are all the same size
+        
+        avatar_center_X = self.avatar_X - self.avatar_width//2
+        avatar_center_Y = self.avatar_Y - self.avatar_height//2
+        
+        cards_green_icon_X = self.stackset_X - 3*(self.stack_width//2)
+        cards_green_icon_Y = self.stackset_Y - self.stack_height//2
+        
+        cards_red_icon_X = self.stackset_X - 3*(self.stack_width//2)
+        cards_red_icon_Y = self.stackset_Y + self.stack_height//2
+        
+        cards_blue_icon_X = self.stackset_X - self.stack_width//2
+        cards_blue_icon_Y = self.stackset_Y - self.stack_height//2
+        
+        cards_yellow_icon_X = self.stackset_X - self.stack_width//2
+        cards_yellow_icon_Y = self.stackset_Y + self.stack_height//2
+        
+        cards_purple_icon_X = self.stackset_X + (self.stack_width//2)
+        cards_purple_icon_Y = self.stackset_Y - self.stack_height//2
+        
+        cards_secured_icon_X = self.stackset_X + (self.stack_width//2)
+        cards_secured_icon_Y = self.stackset_Y + self.stack_height//2
+        
+        #stack icons center coords
+        surface.blit(self.avatar, (avatar_center_X, avatar_center_Y))
+        surface.blit(self.cards_green_icon, (cards_green_icon_X, cards_green_icon_Y))
+        surface.blit(self.cards_red_icon, (cards_red_icon_X, cards_red_icon_Y))
+        surface.blit(self.cards_blue_icon, (cards_blue_icon_X, cards_blue_icon_Y))
+        surface.blit(self.cards_yellow_icon, (cards_yellow_icon_X, cards_yellow_icon_Y))
+        surface.blit(self.cards_purple_icon, (cards_purple_icon_X, cards_purple_icon_Y))
+        surface.blit(self.cards_secured_icon, (cards_secured_icon_X, cards_secured_icon_Y))
+        

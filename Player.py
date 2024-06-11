@@ -97,6 +97,8 @@ class Player:
                     self.cards_purple.append(e)
             elif (type(e) == type(s_card_temp)):
                 player_manager.switch_direction()
+        
+        self.count_individual_scores()
     
     # counts the score per color and updates the connected variables
     def count_individual_scores(self):

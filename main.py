@@ -76,13 +76,13 @@ def load_rules(filename):
     return rules
 
 rules = load_rules("assets/rules.txt")
-rule_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", 40)
+rule_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", 40*scale)
 scroll_offset = 0
 
 def die_sides_graphic():
     die_sides=["die_black.png","die_blue.png","die_green.png","die_purple.png","die_red.png","die_yellow.png"]
     random_die_side=pygame.image.load("assets/die_sides/"+random.choice(die_sides))
-    screen.blit(random_die_side,(450,200))
+    screen.blit(random_die_side,(450*scale,200*scale))
     
 def roll_dice():
     return_pressed=False
@@ -147,17 +147,17 @@ while running:
         pygame.mixer.music.play(-1)
         
     while menu:
-        title_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf",150)
+        title_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf",150*scale)
         screen.blit(menu_background, (0, 0))
-        draw_text("PUSH", title_font, (255, 255, 255), 50, 0)
-        draw_text("The Game", text_font, (255, 255, 255), 50,130)
+        draw_text("PUSH", title_font, (255, 255, 255), 50, 0*scale)
+        draw_text("The Game", text_font, (255, 255, 255), 50,130*scale)
         if current_selection == 0:
-            draw_text("Start Game", text_font, (255, 255, 0), 50, 300)
-            draw_text("Rules", text_font, (255, 255, 255), 50, 360)
+            draw_text("Start Game", text_font, (255, 255, 0), 50, 300*scale)
+            draw_text("Rules", text_font, (255, 255, 255), 50, 360*scale)
             pygame.display.flip()
         else:
             draw_text("Start Game", text_font, (255, 255, 255), 50, 300)
-            draw_text("Rules", text_font, (255, 255, 0), 50, 360)
+            draw_text("Rules", text_font, (255, 255, 0), 50, 360*scale)
             pygame.display.flip()
                 
 

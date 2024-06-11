@@ -162,12 +162,12 @@ while running:
         draw_text("PUSH", title_font, (255, 255, 255), 50, 0*scale)
         draw_text("The Game", text_font, (255, 255, 255), 50,130*scale)
         if current_selection == 0:
-            draw_text("Start Game", text_font, (255, 255, 0), 50, 300*scale)
-            draw_text("Rules", text_font, (255, 255, 255), 50, 360*scale)
+            draw_text("Start Game", text_font, (255, 255, 0), 50, 280*scale)
+            draw_text("Rules", text_font, (255, 255, 255), 50, 340*scale)
             pygame.display.flip()
         else:
-            draw_text("Start Game", text_font, (255, 255, 255), 50, 300)
-            draw_text("Rules", text_font, (255, 255, 0), 50, 360*scale)
+            draw_text("Start Game", text_font, (255, 255, 255), 50, 280)
+            draw_text("Rules", text_font, (255, 255, 0), 50, 340*scale)
             pygame.display.flip()
                 
 
@@ -205,8 +205,6 @@ while running:
                                     rules_menu = False
                                     menu = True
 
-                                    
-    
     
 
     #fps ceiling

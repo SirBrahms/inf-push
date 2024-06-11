@@ -279,6 +279,20 @@ while running:
                 if (event.key == pygame.K_RETURN and current_player.current_card == None):
                     # pick up card
                     current_player.get_card()
+                ###### advance turn
+                # 1. player presses q
+                # 2. player selects stack
+                # 3. player gets stack
+                # 4. next player gets stack
+                # 5. last player gets stack
+                # 6. next player's turn
+                if (event.key == pygame.K_q and current_player.current_card == None):
+                    if (player_manager.current_player != player_manager.player_number - 1):
+                        player_manager.current_player += 1
+                    else:
+                        player_manager.current_player = 0
+                    # print(player_manager.current_player)
+                    clear()
                 
                 if (current_player.current_card != None):
                     # put card on stack
@@ -292,20 +306,7 @@ while running:
                         player_manager.add_card_to_stack(current_player.current_card, 2)
                         current_player.current_card = None
                 
-                ###### advance turn
-                # 1. player presses q
-                # 2. player selects stack
-                # 3. player gets stack
-                # 4. next player gets stack
-                # 5. last player gets stack
-                # 6. next player's turn
-                elif (event.key == pygame.K_q):
-                    if (player_manager.current_player != player_manager.player_number - 1):
-                        player_manager.current_player += 1
-                    else:
-                        player_manager.current_player = 0
-                    # print(player_manager.current_player)
-                    clear()
+                
     """
     if setup_done:        
         current_player:Player = player_manager.players[player_manager.current_player] # current player object

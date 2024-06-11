@@ -1,10 +1,9 @@
-from main import *
+from main import player_manager
 from Card import *
 import pygame
 
 class Player:
     def __init__(self,name, avatar_path, avatar_X, avatar_Y):
-        self.name=name
         self.avatar_path = avatar_path
         self.avatar_X=avatar_X
         self.avatar_Y=avatar_Y
@@ -26,7 +25,15 @@ class Player:
 
     def get_card_stack(self, stack_num):
         lst_temp = main.player_manager.stacks[stack_num].inner_list
-        c_card_temp = Card.Colourcard("colour", "green", "1") # temporary card to generate the type
+        c_card_temp = Card.ColourCard("aaa", "green", "1") # temporary card(s) to generate the type
+        d_card_temp = Card.DiceCard("aaa")
+        s_card_temp = Card.SwitchCard("aaaa")
+
+        for f in lst_temp:
+            if (type(f) == d_card_temp):
+                side = roll_dice()
+                color = (s.split("die_")[1].split(".png")[0])
+                lst_temp = [lst_temp for x in lst_temp if x.path.find(color) == -1]
 
         for e in lst_temp:
             if (type(e) == type(c_card_temp)):
@@ -40,6 +47,9 @@ class Player:
                     self.cards_yellow.append(e)
                 elif (e.colour == "purple"):
                     self.cards_purple.append(e)
+            elif (type(e) == type(s_card_temp)):
+                player_manager.switch_direction()
+        
 
     def count_score(self):
         for e in self.cards_green:

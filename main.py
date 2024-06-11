@@ -256,6 +256,14 @@ while running:
     #provisional drawing player's avatars
     if setup_done:        
         table()
+        
+        # highlight current player
+        for i in range(len(player_manager.players)):
+            if i == player_manager.current_player:
+                player_manager.players[i].turn = True
+            else:
+                player_manager.players[i].turn = False
+        
     #fps ceiling
     clock.tick(60)
     #----------------------------------------------------------------------------------------------

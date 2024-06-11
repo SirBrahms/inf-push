@@ -36,7 +36,7 @@ class PlayerManager:
             self.cards.append(SwitchCard(deck[len(deck) - 2]))
         
         random.shuffle(self.cards)
-
+    
     def get_card(self):
         if (len(self.cards) - 1 == 0):
             self.end_game_req = True

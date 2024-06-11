@@ -30,7 +30,7 @@ class Player:
         s_card_temp = Card.SwitchCard("aaaa")
 
         for f in lst_temp:
-            if (type(f) == d_card_temp):
+            if (type(f) == type(d_card_temp)):
                 side = roll_dice()
                 color = (s.split("die_")[1].split(".png")[0])
                 lst_temp = [lst_temp for x in lst_temp if x.path.find(color) == -1]

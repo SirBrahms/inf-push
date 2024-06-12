@@ -178,7 +178,7 @@ class Player:
     def set_is_playing(self, is_playing:bool):
         self.is_playing = is_playing
         
-    #display stacks (work in progress)
+    #display stacks (work in progress, DO NOT USE)
         
     def stack_disp(self, surface):
         stack_disp_Y = screen_center_Y

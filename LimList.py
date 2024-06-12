@@ -13,10 +13,13 @@ class LimList():
             if (type(e) == type(c_card_temp) and type(to_add) == type(c_card_temp)):
                 if (e.colour == to_add.colour or e.number == to_add.number):
                     raise ValueError()
+                    return
             elif (type(e) == type(d_card_temp) and type(to_add) == type(d_card_temp)):
                 raise ValueError()
+                return
             elif (type(e) == type(s_card_temp) and type(to_add) == type(s_card_temp)):
                 raise ValueError()
+                return
         return to_add
     
     def append(self, e):

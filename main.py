@@ -469,6 +469,7 @@ if (__name__ == "__main__"):
                                         elif (event.key == pygame.K_p):
                                             player_manager.players[player_manager.current_player].secure_color("purple")
                                             secure_mode = False
+                            player_manager.next_player()
                             
                             
                 

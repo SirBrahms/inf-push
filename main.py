@@ -3,6 +3,7 @@ import random
 from sys import exit
 from bridge import *
 from Player import Player
+from Card import *
 pygame.init()
 pygame.font.init()
 pygame.mixer.init()
@@ -240,10 +241,19 @@ def table():
         player6.draw(screen)
     pygame.display.flip()
 
+def draw_players():
+    for e in player_manager.players:
+        if (e.is_playing):
+            e.draw(screen)
+    for i in range(len(player_manager.players)):
+                if i == player_manager.current_player and not player_manager.stack_selection:
+                    player_manager.players[i].turn = True
+                else:
+                    player_manager.players[i].turn = False
+
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 if (__name__ == "__main__"):
-    
     running = True
     setup_done = False
     while running:
@@ -332,13 +342,16 @@ if (__name__ == "__main__"):
             ### Drawing stuff goes here
             table()
             while len(player_manager.cards) != 0:
+                draw_players()
                 card_to_stack=False
+                secure_mode = False
                 screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
                 player_manager.draw_direction(screen, screen_height, 30, screen_center_Y)
                 pygame.display.flip()
                 for event in pygame.event.get():
                     quit_handler()
-                    if (event.type == pygame.KEYDOWN):
+                    card_to_stack = False
+                    if (event.type == pygame.KEYDOWN and not player_manager.stack_selection and not secure_mode):
                         if event.key == pygame.K_RETURN:
                             card_to_stack = True
                             current_card=player_manager.get_card()
@@ -355,31 +368,121 @@ if (__name__ == "__main__"):
                             pygame.display.flip()
                             
                             while card_to_stack:
+                                draw_players()
                                 for event in pygame.event.get():
                                     quit_handler()
                                     if (event.type == pygame.KEYDOWN):
-                                        if (event.key == pygame.K_1):
-                                            player_manager.add_card_to_stack(current_card, 0)
-                                            screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
-                                            screen.blit(pygame.image.load(current_card.path),(330,135+len(player_manager.stacks[0].inner_list)*15))
-                                            pygame.mixer.Sound.play(card_sound)
-                                            card_to_stack = False
-                                        elif (event.key == pygame.K_2):
-                                            player_manager.add_card_to_stack(current_card, 1)
-                                            screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
-                                            screen.blit(pygame.image.load(current_card.path),(505,135+len(player_manager.stacks[1].inner_list)*15))
-                                            pygame.mixer.Sound.play(card_sound)
-                                            card_to_stack = False
-                                        elif (event.key == pygame.K_3):
-                                            player_manager.add_card_to_stack(current_card, 2)
-                                            screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
-                                            screen.blit(pygame.image.load(current_card.path),(680,135+len(player_manager.stacks[2].inner_list)*15))
-                                            pygame.mixer.Sound.play(card_sound)
-                                            card_to_stack = False
+                                        try:
+                                            if (event.key == pygame.K_1):
+                                                player_manager.add_card_to_stack(current_card, 0)
+                                                screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
+                                                screen.blit(pygame.image.load(current_card.path),(330,150+len(player_manager.stacks[0].inner_list)*20))
+                                                pygame.mixer.Sound.play(card_sound)
+                                                card_to_stack = False
+                                            elif (event.key == pygame.K_2):
+                                                player_manager.add_card_to_stack(current_card, 1)
+                                                screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
+                                                screen.blit(pygame.image.load(current_card.path),(505,150+len(player_manager.stacks[1].inner_list)*20))
+                                                pygame.mixer.Sound.play(card_sound)
+                                                card_to_stack = False
+                                            elif (event.key == pygame.K_3):
+                                                player_manager.add_card_to_stack(current_card, 2)
+                                                screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
+                                                screen.blit(pygame.image.load(current_card.path),(680,150+len(player_manager.stacks[2].inner_list)*20))
+                                                pygame.mixer.Sound.play(card_sound)
+                                                card_to_stack = False
+                                        except:
+                                            # you pushed your luck!!
+                                            print("you pushed your luck")
+                                            side = roll_dice()
+                                            color = (side.split("die_")[1].split(".png")[0])
+                                            if (color == "red"):
+                                                player_manager.players[current_player].cards_red.clear()
+                                            elif (color == "green"):
+                                                player_manager.players[current_player].cards_green.clear()
+                                            elif (color == "yellow"):
+                                                player_manager.players[current_player].cards_yellow.clear()
+                                            elif (color == "blue"):
+                                                player_manager.players[current_player].cards_blue.clear()
+                                            elif (color == "purple"):
+                                                player_manager.players[current_player].cards_purple.clear()
+                                            elif (color == "black" and player_manager.risky_mode):
+                                                player_manager.players[current_player].cards_purple.clear()
+                                                player_manager.players[current_player].cards_blue.clear()
+                                                player_manager.players[current_player].cards_yellow.clear()
+                                                player_manager.players[current_player].cards_green.clear()
+                                                player_manager.players[current_player].cards_red.clear()
+                                            player_manager.next_player()
+                                            clear()
                                             
                                 
                                 pygame.display.flip()
-
+                                player_manager.old_current_player = player_manager.current_player
+                        # stack selection
+                        elif (event.key == pygame.K_q and not card_to_stack and not secure_mode):
+                            #print("here")
+                            player_manager.stack_selection = True
+                            while player_manager.stack_selection:
+                                draw_players()
+                                
+                                #print (player_manager.amt_of_selecting_players, player_manager.current_player)
+                                if (player_manager.amt_of_selecting_players == 3):
+                                    player_manager.current_player = player_manager.old_current_player
+                                    player_manager.next_player()
+                                    player_manager.amt_of_selecting_players = 0
+                                    clear()
+                                    pygame.display.flip()
+                                    player_manager.stack_selection = False
+                                
+                                for event in pygame.event.get():
+                                    quit_handler()
+                                    draw_players()
+                                    if (event.type == pygame.KEYDOWN):
+                                        if (event.key == pygame.K_1):
+                                            player_manager.players[player_manager.current_player].get_card_stack(0, roll_dice)
+                                            player_manager.amt_of_selecting_players += 1
+                                            player_manager.next_player(False)
+                                        elif (event.key == pygame.K_2):
+                                            player_manager.players[player_manager.current_player].get_card_stack(1, roll_dice)
+                                            player_manager.amt_of_selecting_players += 1
+                                            player_manager.next_player(False)
+                                        elif (event.key == pygame.K_3):
+                                            player_manager.players[player_manager.current_player].get_card_stack(2, roll_dice)
+                                            player_manager.amt_of_selecting_players += 1
+                                            player_manager.next_player(False)
+                                pygame.display.flip()
+                        elif (event.key == pygame.K_s and not card_to_stack and not player_manager.stack_selection):
+                            # secure
+                            print("here")
+                            secure_mode = True
+                            while secure_mode:
+                                for event in pygame.event.get():
+                                    quit_handler()
+                                    draw_players()
+                                    if (event.type == pygame.KEYDOWN):
+                                        if (event.key == pygame.K_r):
+                                            player_manager.players[player_manager.current_player].secure_color("red")
+                                            secure_mode = False
+                                        elif (event.key == pygame.K_g):
+                                            player_manager.players[player_manager.current_player].secure_color("green")
+                                            secure_mode = False
+                                        elif (event.key == pygame.K_b):
+                                            player_manager.players[player_manager.current_player].secure_color("blue")
+                                            secure_mode = False
+                                        elif (event.key == pygame.K_y):
+                                            player_manager.players[player_manager.current_player].secure_color("yellow")
+                                            secure_mode = False
+                                        elif (event.key == pygame.K_p):
+                                            player_manager.players[player_manager.current_player].secure_color("purple")
+                                            secure_mode = False
+                            
+                            
+                
+                            
+            """
+            current_player.stack_disp(screen)
+            
+            """
             """
             if (current_player.current_card != None):
                 screen.blit(current_player.current_card_disp, (current_player.current_card_disp_X, current_player.current_card_disp_Y)) 
@@ -404,22 +507,21 @@ if (__name__ == "__main__"):
                     # 6. next player's turn
                 
                     if (player_manager.stack_selection):
-                        player_manager.old_current_player = player_manager.current_player
                         print(player_manager.amt_of_selecting_players)
                         if (player_manager.amt_of_selecting_players != 2): # not every possible player has selected their stack
                             print("here")
                             if (event.key == pygame.K_1):
                                 player_manager.players[player_manager.current_player].get_card_stack(0, roll_dice)
                                 player_manager.amt_of_selecting_players += 1
-                                player_manager.next_player()
+                                player_manager.next_player(False)
                             elif (event.key == pygame.K_2):
                                 player_manager.players[player_manager.current_player].get_card_stack(1, roll_dice)
                                 player_manager.amt_of_selecting_players += 1
-                                player_manager.next_player()
+                                player_manager.next_player(False)
                             elif (event.key == pygame.K_3):
                                 player_manager.players[player_manager.current_player].get_card_stack(2, roll_dice)
                                 player_manager.amt_of_selecting_players += 1
-                                player_manager.next_player()
+                                player_manager.next_player(False)
                             clear()
                         else: # every player has selected their stack
                             player_manager.current_player = player_manager.old_current_player
@@ -427,7 +529,6 @@ if (__name__ == "__main__"):
                             player_manager.next_player()
                             # print(player_manager.current_player)
                             clear()
-                            print("here 2 (bad)")
                             player_manager.stack_selection = False
                             player_manager.amt_of_selecting_players = 0
                     else:

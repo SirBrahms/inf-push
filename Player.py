@@ -91,25 +91,28 @@ class Player:
 
     # gets an enitre stack of cards (selected by the stack num), divides the ColourCards into their respective lists and does the actions of all the special cards
     def get_card_stack(self, stack_num:int, rfunc):
-        lst_temp:Card = player_manager.stacks[stack_num].inner_list
+        lst_temp:Card = player_manager.stacks[stack_num].inner_list.copy()
+        player_manager.stacks[stack_num].inner_list.clear()
         c_card_temp = ColourCard("aaa", "green", "1") # temporary card(s) to generate the type
         d_card_temp = DiceCard("aaa")
         s_card_temp = SwitchCard("aaaa")
 
         for f in lst_temp:
+            clipboard = []
             if (type(f) == type(d_card_temp)):
                 side = rfunc()
                 color = (side.split("die_")[1].split(".png")[0])
                 if (color == "black"):
                     lst_temp.clear()
                     return
-                clipboard = []
+                
                 for e in lst_temp:
                     if (type(e) == type(c_card_temp)):
                         if (e.colour != color):
                             clipboard.append(e)
                 
-                lst_temp = clipboard        
+            print(len(clipboard))
+            lst_temp = clipboard.copy() if len(clipboard) != 0 else lst_temp  
 
         for e in lst_temp:
             if (type(e) == type(c_card_temp)):
@@ -127,6 +130,7 @@ class Player:
                 player_manager.switch_direction()
         
         self.count_individual_scores()
+        return True
     
     # counts the score per color and updates the connected variables
     def count_individual_scores(self):
@@ -173,6 +177,7 @@ class Player:
         if (color == "purple"):
             self.secured_cards += self.cards_purple
             self.cards_purple.clear()
+        self.count_individual_scores()
     
     # sets whether the player is playing
     def set_is_playing(self, is_playing:bool):

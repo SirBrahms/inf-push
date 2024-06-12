@@ -23,7 +23,7 @@ pygame.display.set_caption("Push")
 screen_center_X = screen_width//2
 screen_center_Y = screen_height//2
 white = (255,255,255)
-
+yellow = (255,255,0)
 def clear():
     screen.fill((0,0,0))
 
@@ -36,7 +36,7 @@ def player_number_screen():
         screen.blit(player_background,(0,0))
         draw_text("Select Number of Players", text_font, white, 320, 10)
         if current_selection == 0:
-            draw_text("2", title_font, (255,255,0),150,260)
+            draw_text("2", title_font, yellow,150,260)
             draw_text("3", title_font, white,350,260)
             draw_text("4", title_font, white,550,260)
             draw_text("5", title_font, white,750,260)
@@ -44,7 +44,7 @@ def player_number_screen():
             
         elif current_selection == 1:
             draw_text("2", title_font, white,150,260)
-            draw_text("3", title_font, (255,255,0),350,260)
+            draw_text("3", title_font, yellow,350,260)
             draw_text("4", title_font, white,550,260)
             draw_text("5", title_font, white,750,260)
             draw_text("6", title_font, white,950,260)
@@ -52,7 +52,7 @@ def player_number_screen():
         elif current_selection == 2:
             draw_text("2", title_font, white,150,260)
             draw_text("3", title_font, white,350,260)
-            draw_text("4", title_font, (255,255,0),550,260)
+            draw_text("4", title_font, yellow,550,260)
             draw_text("5", title_font, white,750,260)
             draw_text("6", title_font, white,950,260)
             
@@ -60,7 +60,7 @@ def player_number_screen():
             draw_text("2", title_font, white,150,260)
             draw_text("3", title_font, white,350,260)
             draw_text("4", title_font, white,550,260)
-            draw_text("5", title_font, (255,255,0),750,260)
+            draw_text("5", title_font, yellow,750,260)
             draw_text("6", title_font, white,950,260)
             
         elif current_selection == 4:
@@ -68,7 +68,7 @@ def player_number_screen():
             draw_text("3", title_font, white,350,260)
             draw_text("4", title_font, white,550,260)
             draw_text("5", title_font, white,750,260)
-            draw_text("6", title_font, (255,255,0),950,260)
+            draw_text("6", title_font, yellow,950,260)
             
         pygame.display.flip()
         for event in pygame.event.get():
@@ -95,11 +95,11 @@ def player_mode_screen():
         screen.blit(game_mode_background, (0,0))
         draw_text("Select Game Mode", text_font, white, 400, 10)
         if current_selection == 0:
-            draw_text("safe", title_font, (255,255,0), 150, 250)
+            draw_text("safe", title_font, yellow, 150, 250)
             draw_text("risky", title_font, white, 750, 250)
         elif current_selection == 1:
             draw_text("safe", title_font, white, 150, 250)
-            draw_text("risky", title_font, (255,255,0), 750, 250)
+            draw_text("risky", title_font, yellow, 750, 250)
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

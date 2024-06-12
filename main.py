@@ -380,6 +380,7 @@ if (__name__ == "__main__"):
                 draw_players()
                 card_to_stack=False
                 secure_mode = False
+                player_manager.draw_direction(screen, screen_height, 30, screen_center_Y)
                 screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
                 pygame.display.flip()
                 

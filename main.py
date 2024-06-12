@@ -308,12 +308,12 @@ if (__name__ == "__main__"):
         if not logo_done:
             screen.blit(logo, (logo_X, logo_Y))
             pygame.display.flip()
-            pygame.time.delay(500) #temporarily shortened for testing
+            pygame.time.delay(5000)
             clear()
             logo_done = True
             menu = True
             current_selection=0
-            #pygame.mixer.music.play(-1) commented out because it's driving me crazy
+            pygame.mixer.music.play(-1)
         
         while menu:
             title_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf",150*scale)

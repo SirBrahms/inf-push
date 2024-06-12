@@ -189,7 +189,7 @@ class Player:
                 stack_disp_X = screen_center_X
             else:
                 stack_disp_X = screen_center_X*1.25
-            for i in e.inner_list:
+            for i in range(len(e.inner_list)):
                 #draw image
                 image = pygame.image.load(e.inner_list[i].path)
                 #line above can't call path correctly, fix!!

@@ -27,6 +27,12 @@ yellow = (255,255,0)
 def clear():
     screen.fill((0,0,0))
 
+def quit_handler():
+    if event.type == pygame.QUIT:
+        running = False
+        pygame.quit()
+        exit()
+        
 def player_number_screen():
     player_number_screen = True
     player_background = pygame.image.load("assets/backgrounds/select_players_background.png")
@@ -72,10 +78,7 @@ def player_number_screen():
             
         pygame.display.flip()
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-                pygame.quit()
-                exit()
+            quit_handler()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT and current_selection != 4:
                     current_selection += 1
@@ -102,10 +105,7 @@ def player_mode_screen():
             draw_text("risky", title_font, yellow, 750, 250)
         pygame.display.flip()
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-                pygame.quit()
-                exit()
+            quit_handler()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT and current_selection != 1:
                     current_selection += 1
@@ -238,8 +238,7 @@ def table():
     if player6.is_playing:
         player6.draw(screen)
     player_manager.draw_direction(screen, screen_height, 30, screen_center_Y)
-    
-    
+
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 if (__name__ == "__main__"):
@@ -251,10 +250,7 @@ if (__name__ == "__main__"):
         #event handler
         for event in pygame.event.get():
         #quit event
-            if event.type == pygame.QUIT:
-                running = False
-                pygame.quit()
-                exit()
+            quit_handler()
             #set player number
             if logo_done and not player_manager.pn_set:
                 player_number_screen()
@@ -289,10 +285,7 @@ if (__name__ == "__main__"):
                 pygame.display.flip()
                 
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-                    pygame.quit()
-                    exit()
+                quit_handler()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN:
                         if current_selection == 0:
@@ -352,6 +345,7 @@ if (__name__ == "__main__"):
         
             #### Input stuff
             for event in pygame.event.get():
+                quit_handler()
                 if (event.type == pygame.KEYDOWN):
                 
                     # 1. player presses q

@@ -243,7 +243,13 @@ def table():
 
 def draw_players():
     for e in player_manager.players:
-        e.draw(screen)
+        if (e.is_playing):
+            e.draw(screen)
+    for i in range(len(player_manager.players)):
+                if i == player_manager.current_player and not player_manager.stack_selection:
+                    player_manager.players[i].turn = True
+                else:
+                    player_manager.players[i].turn = False
 
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -379,13 +385,15 @@ if (__name__ == "__main__"):
                                             
                                 
                                 pygame.display.flip()
+                                player_manager.old_current_player = player_manager.current_player
                         # stack selection
                         elif (event.key == pygame.K_q and not card_to_stack):
                             print("here")
                             player_manager.stack_selection = True
                             while player_manager.stack_selection:
                                 draw_players()
-                                print (player_manager.amt_of_selecting_players, player_manager.current_player)
+                                
+                                #print (player_manager.amt_of_selecting_players, player_manager.current_player)
                                 if (player_manager.amt_of_selecting_players == 3):
                                     player_manager.current_player = player_manager.old_current_player
                                     player_manager.next_player()
@@ -396,6 +404,7 @@ if (__name__ == "__main__"):
                                 
                                 for event in pygame.event.get():
                                     quit_handler()
+                                    draw_players()
                                     if (event.type == pygame.KEYDOWN):
                                         if (event.key == pygame.K_1):
                                             player_manager.players[player_manager.current_player].get_card_stack(0, roll_dice)

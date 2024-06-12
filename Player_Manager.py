@@ -8,7 +8,6 @@ import re
 class PlayerManager:
     def __init__(self):
         self.cards = []
-        self.generate_cards()
         self.players = []
         self.player_number = 0
         self.current_player = 0

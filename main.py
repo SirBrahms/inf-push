@@ -133,6 +133,7 @@ rules_background = pygame.image.load("assets/backgrounds/rules_background.png")
 rules_background = pygame.transform.scale(rules_background, (screen_width, screen_height))
 
 pygame.mixer.music.load("assets/music/main_theme.mp3")
+card_sound=pygame.mixer.Sound("assets/music/card_sound.mp3")
 
 #text stuff
 text_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf", screen_width//24)
@@ -238,6 +239,7 @@ def table():
     if player6.is_playing:
         player6.draw(screen)
     player_manager.draw_direction(screen, screen_height, 30, screen_center_Y)
+    pygame.display.flip()
 
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -330,8 +332,54 @@ if (__name__ == "__main__"):
             
             ### Drawing stuff goes here
             table()
+            
+            while len(player_manager.cards) != 0:
+                card_to_stack=False
+                screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
+                pygame.display.flip()
+                
+                
+                for event in pygame.event.get():
+                    quit_handler()
+                    if (event.type == pygame.KEYDOWN):
+                        if event.key == pygame.K_RETURN:
+                            card_to_stack = True
+                            current_card=player_manager.get_card()
+                            screen.blit(pygame.image.load(current_card.path),(30,250))
+                            pygame.mixer.Sound.play(card_sound)
+                            pygame.display.flip()
+                            while card_to_stack:
+                                for event in pygame.event.get():
+                                    quit_handler()
+                                    if (event.type == pygame.KEYDOWN):
+                                        if (event.key == pygame.K_1):
+                                            player_manager.add_card_to_stack(current_card, 0)
+                                            screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
+                                            screen.blit(pygame.image.load(current_card.path),(330,150+len(player_manager.stacks[0].inner_list)*20))
+                                            pygame.mixer.Sound.play(card_sound)
+                                            card_to_stack = False
+                                        elif (event.key == pygame.K_2):
+                                            player_manager.add_card_to_stack(current_card, 1)
+                                            screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
+                                            screen.blit(pygame.image.load(current_card.path),(505,150+len(player_manager.stacks[1].inner_list)*20))
+                                            pygame.mixer.Sound.play(card_sound)
+                                            card_to_stack = False
+                                        elif (event.key == pygame.K_3):
+                                            player_manager.add_card_to_stack(current_card, 2)
+                                            screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
+                                            screen.blit(pygame.image.load(current_card.path),(680,150+len(player_manager.stacks[2].inner_list)*20))
+                                            pygame.mixer.Sound.play(card_sound)
+                                            card_to_stack = False
+                                            
+                                
+                                pygame.display.flip()
+                            
+                
+                            
             """
             current_player.stack_disp(screen)
+            
+            """
             """
             if (current_player.current_card != None):
                 screen.blit(current_player.current_card_disp, (current_player.current_card_disp_X, current_player.current_card_disp_Y)) 
@@ -403,6 +451,7 @@ if (__name__ == "__main__"):
                             elif (event.key == pygame.K_3):
                                 player_manager.add_card_to_stack(current_player.current_card, 2)
                                 current_player.current_card = None
+    """
                 
         #fps ceiling
         clock.tick(60)

@@ -26,8 +26,8 @@ class PlayerManager:
         temp_list = deck[:-2]
         for e in temp_list:
             num = int(re.findall(r"[\d].*(?=\.png)", e)[0]) #regex, do not touch
-            temporary_color_variable_because_python_is_fucking_stupid = re.sub(r"(?:.*\/(?:.*)\/)", "", e)
-            color = re.search(r".*(?=\d\.png)", temporary_color_variable_because_python_is_fucking_stupid)[0]
+            temporary_color_variable_because_python_is_stupid = re.sub(r"(?:.*\/(?:.*)\/)", "", e)
+            color = re.search(r".*(?=\d\.png)", temporary_color_variable_because_python_is_stupid)[0]
             
             for i in range(3):
                 self.cards.append(ColourCard(e, color, num))

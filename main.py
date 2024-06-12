@@ -380,11 +380,9 @@ if (__name__ == "__main__"):
                 draw_players()
                 card_to_stack=False
                 secure_mode = False
-                player_manager.draw_direction(screen, screen_height, 30, screen_center_Y)
                 screen.blit(pygame.image.load("assets/cards/back_card.png"),(30,250))
+                player_manager.draw_direction(screen, screen_height, 30, screen_center_Y)
                 pygame.display.flip()
-                
-                
                 for event in pygame.event.get():
                     quit_handler()
                     card_to_stack = False
@@ -394,6 +392,7 @@ if (__name__ == "__main__"):
                             current_card=player_manager.get_card()
                             screen.blit(pygame.image.load(current_card.path),(30,250))
                             pygame.mixer.Sound.play(card_sound)
+                            pygame.display.flip()
                             if current_card.path=="assets/cards/swap_direction.png":
                                 pygame.time.delay(1000)
                                 screen.blit(pygame.image.load(current_card.path),(180,250))

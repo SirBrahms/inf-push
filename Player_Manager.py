@@ -40,14 +40,19 @@ class PlayerManager:
             self.cards.append(SwitchCard(deck[len(deck) - 2]))
         
         random.shuffle(self.cards)
+    
+    # advances the turn to the next player
+    # reset indicates whether to update the PlayerManager.old_current_player property (False = no update | True = update)
+    def next_player(self, reset:bool = True):
+        if (reset):
+            self.old_current_player = self.current_player
         
-    def next_player(self):
         next = self.current_player + (1 * self.direction)
         if (next == self.player_number):
             next = 0
         elif (next < 0):
             next = self.player_number - 1
-            
+        
         self.current_player = next
     
     def get_card(self):

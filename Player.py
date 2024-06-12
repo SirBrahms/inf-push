@@ -6,6 +6,8 @@ screen_height = 700 #do not change!
 screen_width = 1200 #do not change!
 screen_center_Y = screen_height//2
 screen_center_X = screen_width//2
+white = (255,255,255)
+
 def draw_text(surface, text, font, colour, x, y):
     image = font.render(text, True, colour)
     surface.blit(image, (x,y))
@@ -229,25 +231,25 @@ class Player:
             else:
                 surface.blit(self.highlight, (avatar_center_X-15, avatar_center_Y-75))
         surface.blit(self.cards_green_icon, (cards_green_icon_X, cards_green_icon_Y))
-        draw_text(surface, str(self.score_green), text_font, (255,255,255), cards_green_icon_X+8, cards_green_icon_Y+4)
+        draw_text(surface, str(self.score_green), text_font, white, cards_green_icon_X+8, cards_green_icon_Y+4)
         
         surface.blit(self.cards_red_icon, (cards_red_icon_X, cards_red_icon_Y))
-        draw_text(surface, str(self.score_red), text_font, (255,255,255), cards_red_icon_X+8, cards_red_icon_Y+4)
+        draw_text(surface, str(self.score_red), text_font, white, cards_red_icon_X+8, cards_red_icon_Y+4)
         
         surface.blit(self.cards_blue_icon, (cards_blue_icon_X, cards_blue_icon_Y))
-        draw_text(surface, str(self.score_blue), text_font, (255,255,255), cards_blue_icon_X+8, cards_blue_icon_Y+4)
+        draw_text(surface, str(self.score_blue), text_font, white, cards_blue_icon_X+8, cards_blue_icon_Y+4)
         
         surface.blit(self.cards_yellow_icon, (cards_yellow_icon_X, cards_yellow_icon_Y))
-        draw_text(surface, str(self.score_yellow), text_font, (255,255,255), cards_yellow_icon_X+8, cards_yellow_icon_Y+4)
+        draw_text(surface, str(self.score_yellow), text_font, white, cards_yellow_icon_X+8, cards_yellow_icon_Y+4)
         
         surface.blit(self.cards_purple_icon, (cards_purple_icon_X, cards_purple_icon_Y))
-        draw_text(surface, str(self.score_purple), text_font, (255,255,255), cards_purple_icon_X+8, cards_purple_icon_Y+4)
+        draw_text(surface, str(self.score_purple), text_font, white, cards_purple_icon_X+8, cards_purple_icon_Y+4)
         
         surface.blit(self.cards_secured_icon, (cards_secured_icon_X, cards_secured_icon_Y))
-        draw_text(surface, str(self.score_secured), text_font, (255,255,255), cards_secured_icon_X+8, cards_secured_icon_Y+4)
+        draw_text(surface, str(self.score_secured), text_font, white, cards_secured_icon_X+8, cards_secured_icon_Y+4)
         
         if avatar_center_Y <= screen_height//2:
-            draw_text(surface, "Score: "+str(self.score), text_font, (255,255,255), avatar_center_X, avatar_center_Y)
+            draw_text(surface, "Score: "+str(self.score), text_font, white, avatar_center_X, avatar_center_Y)
         else:
-            draw_text(surface, "Score: "+str(self.score), text_font, (255,255,255), avatar_center_X, avatar_center_Y+100)
+            draw_text(surface, "Score: "+str(self.score), text_font, white, avatar_center_X, avatar_center_Y+100)
         

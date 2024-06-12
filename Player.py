@@ -179,22 +179,24 @@ class Player:
         self.is_playing = is_playing
         
     #display stacks (work in progress)
-    """    
+        
     def stack_disp(self, surface):
         stack_disp_Y = screen_center_Y
         for e in player_manager.stacks:
             if e == 0:
-                stack_disp_X = screen_center_x*0.75
+                stack_disp_X = screen_center_X*0.75
             elif e == 1:
-                stack_disp_X = screen_center_x
-            elif e==2:
-                stack_disp_X = screen_center*1.25
-            for i in player_manager.stacks[e]:
+                stack_disp_X = screen_center_X
+            else:
+                stack_disp_X = screen_center_X*1.25
+            for i in e.inner_list:
                 #draw image
-                surface.blit(player_manager.stacks[e][i], (stack_disp_X, stack_disp_Y))
+                image = pygame.image.load(e.inner_list[i].path)
+                #line above can't call path correctly, fix!!
+                surface.blit(image, (stack_disp_X, stack_disp_Y))
                 #move place coords down a bit
                 stack_disp_Y+=50
-    """
+    
     # draws the player to the screen (tysm Michael)    
     def draw(self, surface):
         self.stack_width = self.cards_green_icon.get_width()

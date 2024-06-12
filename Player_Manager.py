@@ -83,3 +83,8 @@ class PlayerManager:
         center_X = x - width//2
         center_Y = y - height//2
         surface.blit(image, (center_X, center_Y))
+    
+    def clear_arrow_area(self, surface, x, y, screen_height):
+        arrow_size = int(screen_height * 0.1)
+        rect = pygame.Rect(x - arrow_size // 2, y - arrow_size // 2, arrow_size, arrow_size)
+        surface.fill((0, 0, 0), rect)

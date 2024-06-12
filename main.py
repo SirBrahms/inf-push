@@ -154,7 +154,7 @@ scroll_offset = 0
 def die_sides_graphic():
     die_sides=["die_black.png","die_blue.png","die_green.png","die_purple.png","die_red.png","die_yellow.png"]
     random_die_side=pygame.image.load("assets/die_sides/"+random.choice(die_sides))
-    screen.blit(random_die_side,(450*scale,200*scale))
+    screen.blit(random_die_side,(900*scale,200*scale))
     dice_sound_effect=pygame.mixer.Sound("assets/music/dice_sound.mp3")
     pygame.mixer.Sound.play(dice_sound_effect)
     
@@ -182,7 +182,7 @@ def roll_dice():
         die_sides=["die_black.png","die_blue.png","die_green.png","die_purple.png","die_red.png","die_yellow.png"]
         path = "assets/die_sides/"+random.choice(die_sides)
         random_die_side=pygame.image.load(path)
-        screen.blit(random_die_side,(450*scale,200*scale))
+        screen.blit(random_die_side,(900*scale,200*scale))
         dice_sound_effect=pygame.mixer.Sound("assets/music/dice_sound.mp3")
         pygame.mixer.Sound.play(dice_sound_effect)
         pygame.display.flip()

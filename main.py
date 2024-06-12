@@ -288,8 +288,11 @@ if (__name__ == "__main__"):
                 draw_text("Rules", text_font, (255, 255, 0), 50, 340*scale)
                 pygame.display.flip()
                 
-
             for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                    pygame.quit()
+                    exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN:
                         if current_selection == 0:

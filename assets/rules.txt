@@ -19,6 +19,14 @@ collected by opponents. At any time, a player can choose to
 stop drawing cards. After stopping, it is time for players to 
 collect the columns and add cards to their bench. 
 
+INSTRUCTIONS
+To get a card, press Return and 1, 2 or 3 to place the card on the 
+respective stack
+To end your turn, press q
+To select a stack after you've ended your turn press 1, 2 or 3
+To secure your cards press s, followed by the initial of the
+color you want to save
+
 BENCHING CARDS 
 When a player stops, that player chooses one column to collect 
 and add to their bench. Benched cards are arranged by color 

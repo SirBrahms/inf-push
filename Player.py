@@ -177,6 +177,7 @@ class Player:
         if (color == "purple"):
             self.secured_cards += self.cards_purple
             self.cards_purple.clear()
+        self.count_individual_scores()
     
     # sets whether the player is playing
     def set_is_playing(self, is_playing:bool):

@@ -376,10 +376,7 @@ if (__name__ == "__main__"):
                         else: # every player has selected their stack
                             player_manager.current_player = player_manager.old_current_player
                             # step 6
-                            if (player_manager.current_player != player_manager.player_number - 1):
-                                player_manager.current_player += 1 * player_manager.direction
-                            else:
-                                player_manager.current_player = 0
+                            player_manager.next_player()
                             # print(player_manager.current_player)
                             clear()
                             print("here 2 (bad)")
@@ -390,8 +387,9 @@ if (__name__ == "__main__"):
                             # pick up card
                             current_player.get_card()
                     
-                        ###### advance turn
+                        
                         if (event.key == pygame.K_q and current_player.current_card == None):
+                            # advance turn
                             player_manager.stack_selection = True
                 
                         if (current_player.current_card != None):

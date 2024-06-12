@@ -3,6 +3,7 @@ import random
 from sys import exit
 from bridge import *
 from Player import Player
+from Card import *
 pygame.init()
 pygame.font.init()
 pygame.mixer.init()
@@ -354,8 +355,13 @@ if (__name__ == "__main__"):
                     card_to_stack = False
                     if (event.type == pygame.KEYDOWN and not player_manager.stack_selection):
                         if event.key == pygame.K_RETURN:
+                        # temporary card(s) to generate the type
+                            s_card_temp = SwitchCard("aaaa")
                             card_to_stack = True
                             current_card=player_manager.get_card()
+                            if (type(current_card) == type(s_card_temp)):
+                                player_manager.switch_direction()
+                                card_to_stack = False
                             screen.blit(pygame.image.load(current_card.path),(30,250))
                             pygame.mixer.Sound.play(card_sound)
                             pygame.display.flip()

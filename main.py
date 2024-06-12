@@ -274,24 +274,24 @@ if (__name__ == "__main__"):
         if not logo_done:
             screen.blit(logo, (logo_X, logo_Y))
             pygame.display.flip()
-            pygame.time.delay(500) #temporarily shortened for testing
+            pygame.time.delay(5000) 
             clear()
             logo_done = True
             menu = True
             current_selection=0
-            #pygame.mixer.music.play(-1) commented out because it's driving me crazy
+            pygame.mixer.music.play(-1)
         
         while menu:
             title_font = pygame.font.Font("assets/fonts/Tiny5/Tiny5-Regular.ttf",150*scale)
             screen.blit(menu_background, (0, 0))
-            draw_text("PUSH", title_font, (255, 255, 255), 50, 0*scale)
-            draw_text("The Game", text_font, (255, 255, 255), 50,130*scale)
+            draw_text("PUSH", title_font, white, 50, 0*scale)
+            draw_text("The Game", text_font, white, 50,130*scale)
             if current_selection == 0:
                 draw_text("Start Game", text_font, (255, 255, 0), 50, 280*scale)
-                draw_text("Rules", text_font, (255, 255, 255), 50, 340*scale)
+                draw_text("Rules", text_font, white, 50, 340*scale)
                 pygame.display.flip()
             else:
-                draw_text("Start Game", text_font, (255, 255, 255), 50, 280)
+                draw_text("Start Game", text_font, white, 50, 280)
                 draw_text("Rules", text_font, (255, 255, 0), 50, 340*scale)
                 pygame.display.flip()
                 
@@ -314,7 +314,7 @@ if (__name__ == "__main__"):
                             screen.blit(rules_background, (0, 0))
                             y = 50 - scroll_offset
                             for line in rules:
-                                draw_text(line.strip(), rule_font, (255, 255, 255), 50, y)
+                                draw_text(line.strip(), rule_font, white, 50, y)
                                 y += 30
 
                             pygame.display.flip()

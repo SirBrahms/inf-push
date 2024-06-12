@@ -177,25 +177,6 @@ class Player:
     # sets whether the player is playing
     def set_is_playing(self, is_playing:bool):
         self.is_playing = is_playing
-        
-    #display stacks (work in progress, DO NOT USE)
-        
-    def stack_disp(self, surface):
-        stack_disp_Y = screen_center_Y
-        for e in player_manager.stacks:
-            if e == 0:
-                stack_disp_X = screen_center_X*0.75
-            elif e == 1:
-                stack_disp_X = screen_center_X
-            else:
-                stack_disp_X = screen_center_X*1.25
-            for i in range(len(e.inner_list)):
-                #draw image
-                image = pygame.image.load(e.inner_list[i].path)
-                #line above can't call path correctly, fix!!
-                surface.blit(image, (stack_disp_X, stack_disp_Y))
-                #move place coords down a bit
-                stack_disp_Y+=50
     
     # draws the player to the screen (tysm Michael)    
     def draw(self, surface):

@@ -373,13 +373,7 @@ if (__name__ == "__main__"):
                                             
                                 
                                 pygame.display.flip()
-                            
-                
-                            
-            """
-            current_player.stack_disp(screen)
-            
-            """
+
             """
             if (current_player.current_card != None):
                 screen.blit(current_player.current_card_disp, (current_player.current_card_disp_X, current_player.current_card_disp_Y)) 

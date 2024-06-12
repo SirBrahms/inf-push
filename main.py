@@ -244,7 +244,6 @@ def table():
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 if (__name__ == "__main__"):
-    
     running = True
     setup_done = False
     while running:
@@ -404,22 +403,21 @@ if (__name__ == "__main__"):
                     # 6. next player's turn
                 
                     if (player_manager.stack_selection):
-                        player_manager.old_current_player = player_manager.current_player
                         print(player_manager.amt_of_selecting_players)
                         if (player_manager.amt_of_selecting_players != 2): # not every possible player has selected their stack
                             print("here")
                             if (event.key == pygame.K_1):
                                 player_manager.players[player_manager.current_player].get_card_stack(0, roll_dice)
                                 player_manager.amt_of_selecting_players += 1
-                                player_manager.next_player()
+                                player_manager.next_player(False)
                             elif (event.key == pygame.K_2):
                                 player_manager.players[player_manager.current_player].get_card_stack(1, roll_dice)
                                 player_manager.amt_of_selecting_players += 1
-                                player_manager.next_player()
+                                player_manager.next_player(False)
                             elif (event.key == pygame.K_3):
                                 player_manager.players[player_manager.current_player].get_card_stack(2, roll_dice)
                                 player_manager.amt_of_selecting_players += 1
-                                player_manager.next_player()
+                                player_manager.next_player(False)
                             clear()
                         else: # every player has selected their stack
                             player_manager.current_player = player_manager.old_current_player
@@ -427,7 +425,6 @@ if (__name__ == "__main__"):
                             player_manager.next_player()
                             # print(player_manager.current_player)
                             clear()
-                            print("here 2 (bad)")
                             player_manager.stack_selection = False
                             player_manager.amt_of_selecting_players = 0
                     else:

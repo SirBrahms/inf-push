@@ -179,9 +179,6 @@ def roll_dice():
         die_sides_graphic()
         pygame.display.flip()
         pygame.time.delay(500)
-        die_sides_graphic()
-        pygame.display.flip()
-        pygame.time.delay(900)
         die_sides=["die_black.png","die_blue.png","die_green.png","die_purple.png","die_red.png","die_yellow.png"]
         path = "assets/die_sides/"+random.choice(die_sides)
         random_die_side=pygame.image.load(path)
@@ -189,7 +186,7 @@ def roll_dice():
         dice_sound_effect=pygame.mixer.Sound("assets/music/dice_sound.mp3")
         pygame.mixer.Sound.play(dice_sound_effect)
         pygame.display.flip()
-        pygame.time.delay(2000)
+        pygame.time.delay(1000)
         return path
 
 player_positions = [ 

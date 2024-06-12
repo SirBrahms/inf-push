@@ -393,6 +393,13 @@ if (__name__ == "__main__"):
                             current_card=player_manager.get_card()
                             screen.blit(pygame.image.load(current_card.path),(30,250))
                             pygame.mixer.Sound.play(card_sound)
+                            if current_card.path=="assets/cards/swap_direction.png":
+                                pygame.time.delay(1000)
+                                screen.blit(pygame.image.load(current_card.path),(180,250))
+                                card_to_stack = False
+                                player_manager.switch_direction()
+                                player_manager.clear_arrow_area(screen, 30, screen_center_Y, screen_height)
+                                
                             pygame.display.flip()
                             while card_to_stack:
                                 for event in pygame.event.get():

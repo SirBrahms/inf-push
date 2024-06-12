@@ -155,6 +155,7 @@ class Player:
             self.score_purple += e.number
         for e in self.secured_cards:
             self.score_secured += e.number
+        self.count_score()
     
     # counts the final score by adding up the value of each card
     def count_score(self):
@@ -178,6 +179,7 @@ class Player:
             self.secured_cards += self.cards_purple
             self.cards_purple.clear()
         self.count_individual_scores()
+        self.count_score()
     
     # sets whether the player is playing
     def set_is_playing(self, is_playing:bool):
